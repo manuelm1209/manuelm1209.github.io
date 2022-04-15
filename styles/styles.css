@@ -550,7 +550,6 @@ section {
 .contact-content-con .left-contact .contact-info .contact-item {
   margin-bottom: 1.5rem;
   display: flex;
-  align-items: center;
   justify-content: space-between;
 }
 .contact-content-con .left-contact .contact-info .contact-item p {
