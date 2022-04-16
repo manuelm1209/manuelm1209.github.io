@@ -847,7 +847,7 @@ section {
   }
 
   .container-2 {
-    padding: 0 !important;
+    padding: 0 0.5rem 0 0 !important;
     margin: 0.5rem;
   }
 
