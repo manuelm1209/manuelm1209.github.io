@@ -1,4 +1,4 @@
-# Personal web site
+# Personal Website
 ## Manuel Montoya
 
 ### Sections
@@ -8,5 +8,5 @@
 1. Blogs.
 1. Contact info.
 
-[__Contact me here__](mailto:manuelm1209@hotmail.com)
+[**__Contact me here__**](mailto:manuelm1209@hotmail.com)
 
