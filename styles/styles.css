@@ -534,8 +534,8 @@ section {
 /* BLOG ARTICLES CSS */
 .article-blogs {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-gap: 2rem;
+  /* grid-template-columns: repeat(1, 1fr);
+  grid-gap: 5rem; */
   margin-top: 4rem;
 }
 .article-blogs .article-blog {
