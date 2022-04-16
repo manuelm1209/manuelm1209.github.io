@@ -878,6 +878,7 @@ section {
 
   .contact-content-con {
     flex-direction: column;
+    margin-bottom: 5rem;
   }
   .contact-content-con .right-contact {
     margin-left: 0;
