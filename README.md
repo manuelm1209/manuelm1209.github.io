@@ -1,6 +1,4 @@
-# manuelm1209.github.io
-
-## Personal web site
+# Personal web site
 ## Manuel Montoya
 
 ### Sections
@@ -10,5 +8,5 @@
 1. Blogs.
 1. Contact info.
 
-[Contact me](mailto:manuelm1209@hotmail.com)
+__[Contact me here]__(mailto:manuelm1209@hotmail.com)
 
