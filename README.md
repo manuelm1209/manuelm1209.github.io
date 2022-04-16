@@ -8,5 +8,5 @@
 1. Blogs.
 1. Contact info.
 
-__[Contact me here]__(mailto:manuelm1209@hotmail.com)
+[__Contact me here__](mailto:manuelm1209@hotmail.com)
 
