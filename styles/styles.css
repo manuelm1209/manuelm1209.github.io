@@ -544,7 +544,8 @@ section {
   border-radius: 5px;
   box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.1);
   transition: all 0.4s ease-in-out;
-  padding-right: 0.5rem;
+  padding-right: 1rem;
+  margin-right: 0.5rem;
 }
 .article-blogs .article-blog .title-img {
   width: 100%;
