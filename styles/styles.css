@@ -786,7 +786,7 @@ section {
   }
 
   .header-content {
-    grid-template-columns: repeat(1, 1fr);
+    /* grid-template-columns: repeat(1, 1fr); */
     padding-bottom: 6rem;
   }
 
@@ -864,6 +864,11 @@ section {
   }
 
   .blogs {
+    grid-template-columns: repeat(1, 1fr);
+    padding-bottom: 6rem;
+  }
+/* MIO */
+  .article-blogs {
     grid-template-columns: repeat(1, 1fr);
     padding-bottom: 6rem;
   }
