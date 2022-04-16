@@ -871,6 +871,10 @@ section {
     padding-bottom: 6rem;
     display: block;
   }
+  
+  .article-blogs .article-blog .article-blog-text {
+    padding: 0rem;
+  }
 
   .contact-content-con {
     flex-direction: column;
