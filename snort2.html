@@ -117,89 +117,129 @@
                             Aquí puedes ver los 9 pasos para configurar Snort.
                         </p>
                         <p>    
-                            ###################################################
-                            # This file contains a sample snort configuration.
-                            # You should take the following steps to create your own custom configuration:
-                            #
-                            #  1) Set the network variables.
-                            #  2) Configure the decoder
-                            #  3) Configure the base detection engine
-                            #  4) Configure dynamic loaded libraries
-                            #  5) Configure preprocessors
-                            #  6) Configure output plugins
-                            #  7) Customize your rule set
-                            #  8) Customize preprocessor and decoder rule set
-                            #  9) Customize shared object rule set
-                            ###################################################
-                        </p> 
+                            ###################################################<br>
+                            # This file contains a sample snort configuration.<br>
+                            # You should take the following steps to create your own custom configuration:<br>
+                            #<br>
+                            #  1) Set the network variables.<br>
+                            #  2) Configure the decoder<br>
+                            #  3) Configure the base detection engine<br>
+                            #  4) Configure dynamic loaded libraries<br>
+                            #  5) Configure preprocessors<br>
+                            #  6) Configure output plugins<br>
+                            #  7) Customize your rule set<br>
+                            #  8) Customize preprocessor and decoder rule set<br>
+                            #  9) Customize shared object rule set<br>
+                            ###################################################<br>
+                        </p>
+                        <p>
                             En este documento solo mencionaremos algunos de estos pasos, buscando realizar una configuración básica de Snort.
+                        </p>
+                        <h3>
                             1) Set the network variables.
+                        </h3>
+                        <p>
                             ipvar HOME_NET any
-                            
-                            La variable HOME_NET, representa la parte de nuestra red en la que confiamos y queremos proteger, esta variable puede ser solo una IP, una lista de IPs separadas por comas, una subnet en notación CIDR, o simplemente “any”.
-                            La mejor práctica es asignar a la variable HOME_NET la subnet que estámos protegiendo en notación CIDR, en mi caso es la siguiente:
-                            ipvar HOME_NET 192.168.0.0/24
-                            
-                            
+                        </p>
+                        <p>
+                            La variable HOME_NET, representa la parte de nuestra red en la que confiamos y queremos proteger, esta variable puede ser solo una IP, una lista de IPs separadas por comas, una subnet en notación CIDR, o simplemente “any”.<br>
+                            La mejor práctica es asignar a la variable HOME_NET la subnet que estámos protegiendo en notación CIDR, en mi caso es la siguiente:<br>
+                            ipvar HOME_NET 192.168.0.0/24<br><br>
+                        </p>    
+                        <p>   
                             ipvar EXTERNAL_NET any
-                            
+                        </p>
+                        <p>    
                             Para la variable EXTERNEL_NET, podemos asignarle todo lo que no sea HOME_NET, y esto lo hacemos anteponiendo el símbolo ! a la variableHOME_NET de la siguiente manera:
-                            
+                        </p>
+                        <p>    
                             ipvar EXTERNAL_NET !$HOME_NET
-                            
+                        </p>
+                        <h3>
                             6) Configure output plugins
+                        </h3>
+                        <p>
                             En esta sección podemos definir dónde y cómo se envían las alertas y registros (logs).
-                            
+                        </p>    
+                        <p>
                             “output unified2”, esta línea es lo que Snort llama “unified logging”, este se encarga de registrar los paquetes completos y las alertas.
-                            
+                        </p>
+                        <h3>    
                             7) Customize your rule set
+                        </h3>    
+                        <p>
+                            include $RULE_PATH/local.rules<br>
+                            Esta línea especifica la ruta de nuestras reglas personalizadas.<br><br>
                             
-                            include $RULE_PATH/local.rules
-                            Esta línea especifica la ruta de nuestras reglas personalizadas.
-                            
-                            Para realizar una buena configuración y creación de reglas, es recomendable deshabilitar las reglas existentes, esto en parte porque pueden generar errores o ser una versión muy antigua que realmente no son muy efectivas contra los ataques actuales.
+                            Para realizar una buena configuración y creación de reglas, es recomendable deshabilitar las reglas existentes, esto en parte porque pueden generar errores o ser una versión muy antigua que realmente no son muy efectivas contra los ataques actuales.<br>
                             Posterior a comentar las reglas que vienen por defecto o en su defecto eliminarlas, procedemos a guardar los cambios en el archivo de configuración de Snort.
-                            
-                            
+                        </p>    
+                        <h2>
                             Probar la correcta configuración de Snort.
+                        </h2>
+                        <p>
                             Para realizar la comprobación de la correcta configuración del archivo snort.conf, podemos hacer uno de la bandera “-T”, la cual nos permite especificar el archivo de configuración con la bandera “-c” y tan solo con estos parámetros obtendremos una respuesta de test de configuración.
-                            
+                        </p>
+                        <p>
                             snort -T -c /etc/snort/snort.conf
-                            
-                            
-                            
+                        </p>    
+                        <h2>                          
                             Entendiendo la estructura de una regla
-                            
-                            Para este capítulo, analizaremos unas de las reglas que se encuentran en el archivo scan.rules dentro de la carpeta de reglas de Snort /etc/snort/rules.
-                            
+                        </h2>
+                        <p>    
+                            Para este capítulo, analizaremos unas de las reglas que se encuentran en el archivo scan.rules dentro de la carpeta de reglas de Snort /etc/snort/rules.<br><br>
                             alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"SCAN SYN FIN"; flow:stateless; flags:SF,12; reference:arachnids,198; classtype:attempted-recon; sid:624; rev:7;)
-                            
-                            
-                            
+                            <br><br><br>
                             Para un mejor análisis de esta regla, vamos a dividirla en dos partes, rule header y rule options.
-                            
+                        </p>   
+                        <h3>                         
                             Rule Header
+                        </h3>
+                        <p>
                             ​alert tcp $EXTERNAL_NET any -> $HOME_NET any
-                            
-                            alert: Acción, esta puede ser alert, log, o pass (drop).
-                            tcp: Protocolo del tráfico que la regla está buscando. Puede ser tcp, udp, y icmp.
-                            $EXTERNAL_NET: IP de origen o red de origen del paquete malicioso. Esta puede ser definida como una variable en el archivo de configuración de Snort en /etc/snort/snort.conf.
-                            any: Puerto de origen. Este puede ser un único puerto (22), múltiples puertos (22,80), o un rango de puertos (22:100).
-                            ->: Dirección del tráfico. En este caso, estamos buscando tráfico originado desde EXTERNAL_NET hacia HOME_NET. Otra opcion para este parámetro es “<>”.
-                            $HOME_NET: IP de destino del tráfico. Esta puede ser definida como una variable en el archivo de configuración de Snort en /etc/snort/snort.conf.
-                            any: Puerto de destino. Este puede ser un puerto específico (22), o una variable conteniendo una lista de puertos.
-                            Nota: recuerda que puedes negar distintos parámetros, incluidos los puertos anteponiendo el símbolo “!”.
+                        </p>   
+                        <ul> 
+                            <li>
+                                alert: Acción, esta puede ser alert, log, o pass (drop).
+                            </li>
+                            <li>
+                                tcp: Protocolo del tráfico que la regla está buscando. Puede ser tcp, udp, y icmp.
+                            </li>
+                            <li>
+                                $EXTERNAL_NET: IP de origen o red de origen del paquete malicioso. Esta puede ser definida como una variable en el archivo de configuración de Snort en /etc/snort/snort.conf.
+                            </li>
+                            <li>
+                                any: Puerto de origen. Este puede ser un único puerto (22), múltiples puertos (22,80), o un rango de puertos (22:100).
+                            </li>
+                            <li>
+                                ->: Dirección del tráfico. En este caso, estamos buscando tráfico originado desde EXTERNAL_NET hacia HOME_NET. Otra opcion para este parámetro es “&lt;&gt;”.
+                            </li>
+                            <li>
+                                $HOME_NET: IP de destino del tráfico. Esta puede ser definida como una variable en el archivo de configuración de Snort en /etc/snort/snort.conf.
+                            </li>
+                            <li>
+                                any: Puerto de destino. Este puede ser un puerto específico (22), o una variable conteniendo una lista de puertos.
+                            </li>
+                        </ul>
+                        <p>
+                            <br>
+                            Nota: recuerda que puedes negar distintos parámetros, incluidos los puertos anteponiendo el símbolo “!”.<br>
                             De esta forma con “!22”, quedará especificado que son todos los puertos excepto el puerto 22.
-                            
-                            
+                        </p>
+                        <h3>
                             Rule Options
+                        </h3>
+                        <p>
                             Esta segunda parte de la regla se puede diferenciar fácilmente ya que está encerrada dentro de paréntesis y está compuesta por una palabra clave, dos puntos y un argumento.
+                            <br>
                             Ejemplo:
+                            <br>
                             keyword:argument
-                            
+                            <br><br>
                             Rule Option:
+                            <br>
                             (msg:"SCAN SYN FIN"; flow:stateless; flags:SF,12; reference:arachnids,198; classtype:attempted-recon; sid:624; rev:7;)
-                            
+                        </p>    
                             
                             msg: Este es el mensaje que se envía al sysadmin si la regla se cumple y es activada. El mensaje en este caso es “SCAN SYN FIN”.
                             
