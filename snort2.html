@@ -240,34 +240,54 @@
                             <br>
                             (msg:"SCAN SYN FIN"; flow:stateless; flags:SF,12; reference:arachnids,198; classtype:attempted-recon; sid:624; rev:7;)
                         </p>    
-                            
-                            msg: Este es el mensaje que se envía al sysadmin si la regla se cumple y es activada. El mensaje en este caso es “SCAN SYN FIN”.
-                            
-                            flow: Esta opción permite a la regla verificar el flujo del tráfico. Esta opción puede ser “established” (Conexión TCP establecida), “not established” (Conexión TCP no establecida), “stateless” (Conexión establecidas y no establecidas). A continuación dejamos las distintas opciones que pueden ser usadas, estas fueron sacadas del manual oficial de Snort.
-                            
-                            flags: Esta sección es para las banderas TCP. 
-                            F - FIN - Finish (LSB in TCP Flags byte)
-                            S - SYN - Synchronize sequence numbers
-                            R - RST - Reset
-                            P - PSH - Push
-                            A - ACK - Acknowledgment
-                            U - URG - Urgent
-                            C - CWR - Congestion Window Reduced (MSB in TCP Flags byte)
-                            E - ECE - ECN-Echo (If SYN, then ECN capable. Else, CE flag in IP header is set)
-                            0 - No TCP Flags Set
-                            
-                            En este caso la regla está buscando tráfico que contenga la bandera SYN y FIN (SF) y adicionalmente tiene los dos bits reservados (12) en la bandera.
-                            
-                            reference: Esta sección es utilizada para extender la información y hacer referencia a una base de datos de seguridad, en este caso podemos obtener más información sobre este ataque en la base de datos de arachnids, attack 198.
-                            classtype: Todas las reglas están clasificadas en numerosas categorías para ayudar a entender al administrador el tipo de ataque que fue realizado. En el caso particular del ejemplo, el ataque fue clasificado como un “attempted-recon”.
-                            sid: (Signature ID) este es el identificador de la regla dentro de Snort. Cada regla debe tener un ID único. En este caso, el ID de la regla es “624”.
-                            rev: A medida que se revisan, mejoran o modifican las reglas, se les asigna un número de revisión. En el caso particular del ejemplo, esta es la revisión “7” de esta regla.
-                            
-                            
-                            content: En esta opción se especifica el contenido que se intenta encontrar en el paquete y lanzar la acción especificada al inicio de la regla. Estos pueden especificarse de distintas formas.    
-                            content: “CONTENIDO”
-                            content: “| 54 14 4C 4F 53 | Intelligence”
-                            content: !”SNORT”                        
+                        <ul>
+                            <li>    
+                                msg: Este es el mensaje que se envía al sysadmin si la regla se cumple y es activada. El mensaje en este caso es “SCAN SYN FIN”.
+                                <br><br>
+                            </li>    
+                            <li>
+                                flow: Esta opción permite a la regla verificar el flujo del tráfico. Esta opción puede ser “established” (Conexión TCP establecida), “not established” (Conexión TCP no establecida), “stateless” (Conexión establecidas y no establecidas). A continuación dejamos las distintas opciones que pueden ser usadas, estas fueron sacadas del manual oficial de Snort.
+                                <br><br>
+                            </li>    
+                            <li>
+                                flags: Esta sección es para las banderas TCP. 
+                                F - FIN - Finish (LSB in TCP Flags byte)
+                                S - SYN - Synchronize sequence numbers
+                                R - RST - Reset
+                                P - PSH - Push
+                                A - ACK - Acknowledgment
+                                U - URG - Urgent
+                                C - CWR - Congestion Window Reduced (MSB in TCP Flags byte)
+                                E - ECE - ECN-Echo (If SYN, then ECN capable. Else, CE flag in IP header is set)
+                                0 - No TCP Flags Set
+                            </li>
+                            <br><br>
+                            <p>                                
+                                En este caso la regla está buscando tráfico que contenga la bandera SYN y FIN (SF) y adicionalmente tiene los dos bits reservados (12) en la bandera.
+                            </p>
+                            <li>    
+                                reference: Esta sección es utilizada para extender la información y hacer referencia a una base de datos de seguridad, en este caso podemos obtener más información sobre este ataque en la base de datos de arachnids, attack 198.
+                            </li>
+                            <li>
+                                classtype: Todas las reglas están clasificadas en numerosas categorías para ayudar a entender al administrador el tipo de ataque que fue realizado. En el caso particular del ejemplo, el ataque fue clasificado como un “attempted-recon”.
+                            </li>
+                            <br><br>
+                            <li>
+                                sid: (Signature ID) este es el identificador de la regla dentro de Snort. Cada regla debe tener un ID único. En este caso, el ID de la regla es “624”.
+                            </li>
+                            <br><br>
+                            <li>
+                                rev: A medida que se revisan, mejoran o modifican las reglas, se les asigna un número de revisión. En el caso particular del ejemplo, esta es la revisión “7” de esta regla.
+                            </li>
+                            <br><br>    
+                            <li>    
+                                content: En esta opción se especifica el contenido que se intenta encontrar en el paquete y lanzar la acción especificada al inicio de la regla. Estos pueden especificarse de distintas formas.    
+                                content: “CONTENIDO”
+                                content: “| 54 14 4C 4F 53 | Intelligence”
+                                content: !”SNORT” 
+                            </li>
+                        </ul>
+                        <br><br>                       
                     </div>
                 </div>
             </div>
