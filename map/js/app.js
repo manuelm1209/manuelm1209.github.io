@@ -7,7 +7,7 @@ const globeSize = {
     h: window.innerHeight
 }
 
-json('../geo.json').then(data => init(data))
+json('../map/geo.json').then(data => init(data))
 
 const init = data => {
     geojson = data
