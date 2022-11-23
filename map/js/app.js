@@ -7,7 +7,7 @@ const globeSize = {
     h: window.innerHeight
 }
 
-json('../map/geo.json').then(data => init(data))
+json('https://gist.githubusercontent.com/manuelm1209/ef3db0624f1d3e55d68e45c0cf38411d/raw/geo-map-world-110metres.json').then(data => init(data))
 
 const init = data => {
     geojson = data
