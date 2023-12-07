@@ -66,6 +66,10 @@ section {
   padding: 3rem 18rem;
 }
 
+section#shadow-host-companion {
+    z-index: -1;
+}
+
 .container {
   display: none;
   transform: translateY(-100%) scale(0);
