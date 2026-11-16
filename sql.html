@@ -1,132 +1,277 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manuel Montoya</title>
-    <link rel="icon" href="assets/favicon.png">
-    <link rel="stylesheet" href="styles/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inyección SQL paso a paso | Manuel Montoya</title>
+  <meta name="description" content="Cómo funciona una consulta SQL, cómo detectar un parámetro vulnerable a inyección SQL y cómo llegar a un ataque UNION. Por Manuel Montoya.">
+  <meta name="theme-color" content="#EEF2F0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0D1724" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Inyección SQL paso a paso">
+  <meta property="og:description" content="Cómo funciona una consulta SQL, cómo detectar un parámetro vulnerable a inyección SQL y cómo llegar a un ataque UNION. Por Manuel Montoya.">
+  <meta property="og:image" content="https://manuelmontoya.dev/img/port1.jpg">
+  <link rel="canonical" href="https://manuelmontoya.dev/sql.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="assets/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+  <link rel="stylesheet" href="css/site.css">
+  <script>
+    /* Set theme and motion flags before first paint to avoid a flash. */
+    (function () {
+      var d = document.documentElement, saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (e) {}
+      var dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+      d.dataset.theme = dark ? 'dark' : 'light';
+      d.classList.add('js');
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('motion');
+    })();
+  </script>
 </head>
-<body class="main-content">
-    <header class="container-2 header active" id="home">
-        <div class="blogs-content">
-            <div class="main-title">
-                <h2>My <span>Blogs</span><span class="bg-text">My Blogs</span></h2>
-            </div>
-            <div class="article-blogs">
-                <div class="article-blog">
-                    <img src="img/port1.jpg" alt="SQLi" class="title-img">
-                    <div class="article-blog-text">
-                        <h1>
-                            SQL Inyection<br>paso a paso
-                        </h1>
-                        <h2>Introducción</h2>
-                        <p>Después de varios intentos para aprender cómo ejecutar inyecciones SQL, llegué al punto de reconocer muchos errores que cometí en este camino, y aclaro que aunque aún sigo siendo un novato en el tema, siento que todo hubiera sido mucho más fácil si hubiera entendido que todo tiene un proceso, y que definitivamente esta no era la excepción.</p>
-                        <p>Primero que todo, pensar siquiera que puedes modificar y tomar ventaja sobre una base de datos SQL sin entender tan siquiera como es la estructura de una consulta SQL suena ridículo, reconozco que fue algo que no se me pasaba por la cabeza al momento de intentarlo. Nunca entendí por qué en los vídeos tutoriales y textos todo funcionaba sin ningún problema, pero al momento de intentarlo, nunca obtenía ningún resultado.</p>
-                        <p>También reconozco que no fue un momento de iluminación en el que reconocí mi error y llegue al camino correcto mágicamente, realmente por cuestiones de trabajo recibí un proyecto donde debía continuar con un programa que hacía consultas a una Base de Datos SQL para verificar las salas de un evento virtual a las que se tenía acceso dependiendo del rol de cada persona, y fue hasta este momento que realmente empecé a entender los motivos por los que los esfuerzos que había hecho al intentar entender el mundo de las inyecciones SQL nunca había llegado a un feliz término.</p>
-                        <p>Por último, quiero dejar plasmado en este documenta la forma en que considero que se puede llegar a aprender a realizar inyecciones SQL de la forma más eficiente y la cual me hubiera ahorrado perder tanto tiempo creyendo que ’ OR 1=1– era el inicio, cuando realmente es el final de un camino supremamente interesante.</p>
-                        <p>Antes de iniciar, debo agregar que gracias a PortSwigger Academy, a su estructura e increíble contenido, fue que finalmente pude conectar todos los puntos, llegando al punto en que por fín me sentía cómodo hablando y explotando esta vulnerabilidad en diversos laboratorios. Recomiendo sinceramente este curso gratuito (el cual es solo el primero de más de 14 vulnerabilidades), y  confieso que sus laboratorios son un reto, así como el mejor  lugar para poner en práctica el conocimiento obtenido.</p>
-                        
-                        <h2>Consultas SQL</h2>
-                        <p>SQL (Structured Query Language), es un lenguaje estándar para acceder y manipular información en bases de datos.</p>
-                        <p>Existen distintos tipos de bases de datos que utilizan en gran medida esta estándar, a continuación te menciono algunos:</p>
-                        <ul>- MySQL.</ul>
-                        <ul>- SQL Server.</ul>
-                        <ul>- Microsoft Access.</ul>
-                        <ul>- Oracle</ul>
-                        <ul>- Postgres</ul>
-                        <p>Dentro de estas bases de datos no solo tenemos la capacidad de consultar, también nos permite realizar cálculos relacionales y nos permite el manejo del álgebra.</p>
-                        <p>En este lenguaje manejamos una o varias base de datos compuesta por tablas, que a su vez están compuestas por filas y columnas, por ponerlo en términos sencillos. Por cuestiones prácticas no vamos a profundizar en las cientos de características que componen este lenguaje, pero si vamos a enunciar la forma básica en que se puede hacer una consulta en términos generales.</p>
-                        
-                        <h3>Lenguaje de manipulación de datos DML</h3>
-                        <p>Data Manipulation Language por su siglas en inglés, nos permite realizar consultas o manipulación de los datos.</p>
-                        <p><b>SELECT:</b> Seleccionar datos almacenados en una base de datos.<br><b>FROM:</b> Nos permite indicar la tabla o tablas a las cuales se les va a realizar la consulta.<br><b>>WHERE:</b> Condición que deben cumplir los datos a devolver en la consulta.<br><b>AND y OR:</b> Conectores lógicos.<br><b>*:</b> Comodín utilizado para que la consulta nos devuelve todos los campos existentes en la tabla.<br><b>–:</b> el doble guion es un indicador de comentario, lo que nos indica que desde estos dos símbolos hacia adelante en la línea, se tomará como un comentario, el cual no hace parte de la consulta.</p>
-                        <p>Nota: Las buenas prácticas nos recomienda escribir estas palabras clave en mayúsculas, esto también nos ayuda a diferenciarlas al momento de escribir y leer una consulta SQL.</p>
-                        <p><b>Ejemplo:</b><br>SELECT * FROM products WHERE category = ‘carros’ AND available = 1</p>
-                        <p>Esta consulta puede ser realizada en una página de artículos, donde se quiera retornar toda la información (denotado por el símbolo “*”), de la tabla “products”, donde la columna “category” sea igual a carros y que también contenga la columna “available” igual a 1.</p>
-                        <p>SELECT * FROM users WHERE username=’administrator’ AND password=’password123’</p>
-                        <p>Esta consulta puede ser usada para verificar que que la contraseña ingresada pertenezca al usuario especificado, en este caso se consulta la tabla “users” para confirmar que la clave de la cuenta “administrador” sea igual a “password123”.</p>
-                        <h2>¿Qué es una inyección SQL?</h2>
-                        <p>La inyección SQL (iSQL/SQL inyection), es una vulnerabilidad web, la cual se basa en interferir las consultas que una aplicación hace a su base de datos por parte de un atacante. Las consecuencias de esta vulnerabilidad pueden variar, pero generalmente inician con la consulta de información de la base de datos que normalmente no se estaría autorizado a visualizar. Esto puede ir desde información restringida de un blog, hasta los usuarios, contraseñas e incluso información de tarjetas de crédito.<br>En muchos casos, esta vulnerabilidad puede llevar a la modificación o eliminación de la información de la base de datos.</p>
-                        
-                        <h3>Tipos de Inyección SQL:</h3>
-                        <ul><b>In Band (Classic).</b></ul>
-                        <ul>Error</ul>
-                        <ul>Union</ul> 
-                        <ul><b>Inferential (Blind).</b></ul>
-                        <ul>Boolean.</ul>
-                        <ul>Time</ul>
-                        <ul><b>Out of Band.</b></ul>
+<body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <!-- Cyanotype duotone: shadows to chart ink, mids to airspace blue, highlights to paper. -->
+      <filter id="duo-light" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0"/>
+        <feComponentTransfer>
+          <feFuncR type="table" tableValues="0.075 0.114 0.933"/>
+          <feFuncG type="table" tableValues="0.145 0.353 0.949"/>
+          <feFuncB type="table" tableValues="0.231 0.639 0.941"/>
+        </feComponentTransfer>
+      </filter>
+      <filter id="duo-dark" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0"/>
+        <feComponentTransfer>
+          <feFuncR type="table" tableValues="0.051 0.235 0.894"/>
+          <feFuncG type="table" tableValues="0.09 0.4 0.925"/>
+          <feFuncB type="table" tableValues="0.141 0.62 0.953"/>
+        </feComponentTransfer>
+      </filter>
+    </defs>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 20h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></g></symbol>
+    <symbol id="i-out" viewBox="0 0 24 24"><path d="M8 16 16 8m-6.5 0H16v6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M16 8V5.5A1.5 1.5 0 0 0 14.5 4h-9A1.5 1.5 0 0 0 4 5.5v9A1.5 1.5 0 0 0 5.5 16H8"/></g></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2m0 15v2M2.5 12h2m15 0h2M5.3 5.3l1.4 1.4m10.6 10.6 1.4 1.4m0-13.4-1.4 1.4M6.7 17.3l-1.4 1.4"/></g></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23Zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64Z"/></symbol>
+    <!-- Top-down airliner, nose pointing north (up). -->
+    <symbol id="i-plane" viewBox="-12 -12 24 24"><path fill="currentColor" d="M0-11.5c1 0 1.5 1.3 1.5 2.6V-3l9.5 5.4v2.1L1.5 1.9 1.3 7.4l3.2 2.4v1.6L0 10.2l-4.5 1.2V9.8l3.2-2.4-.2-5.5L-11 4.5V2.4L-1.5-3v-5.9c0-1.3.5-2.6 1.5-2.6Z"/></symbol>
+  </svg>
 
-                        <h2>Primera Inyección SQL</h2>
-                        <p>Dejando al lado un poco la teoría y adentrándonos un poco más a la práctica, quiero mencionar un poco el proceso básico para realizar una inyección SQL.</p>
-                        <p>Tomando nuevamente el ejemplo anterior de consulta de contenido de una categoría a una página con distintos artículos:</p>
-                        <p>SELECT * FROM products WHERE category = ‘carros’ AND available = 1</p>
-                        <p>Donde posiblemente en la url del sitio podríamos observar lo siguiente:</p>
-                        <p>https://manuelmontoya.info/blog/products?category=carros</p>
-                        <p>Ahora que podemos visualizar fácilmente el lugar que va a tomar la variable “carros” dentro de la consulta a la base de datos, y es en este punto donde podemos iniciar nuestro camino para evaluar si esta consulta puede conllevar a un vulnerabilidad de inyección SQL.</p>
-                        <p>No solo debemos evaluar si esta consulta es o no vulnerable, adicionalmente debemos evaluar a qué tipo de inyección SQL es vulnerable, así como cuál es el mejor método de explotarlo.</p>
-                        <p>Aunque no siempre funciona, la forma más sencilla de evaluar si un parámetro puede ser vulnerable a una inyección SQL es ingresando el símbolo de comilla simple (‘), el cual puede resultar en un mensaje de error dentro de la página web, más adelante nos adentraremos en situaciones más complejas para identificar este tipo de vulnerabilidades.</p>
-                        <p>Ahora podemos ver que este mismo símbolo de comillas simples es usado para delimitar el parámetro ‘carros’ en la consulta. Con esto en mente, podemos empezar a pensar cómo modificar y explotar esta vulnerabilidad.</p>
-                        <p>Partiendo del hecho que conocemos que esta consulta puede ser vulnerable, podemos hacer una prueba inicial, buscando que la consulta no solo retorne una categoría “carros”, sino que devuelva todas las categorías de la base de datos, esto lo podemos lograr utilizando las comillas simples, las cuales nos permitirán engañar a la aplicación y el doble guión, el cual nos permite hacer pensar a la aplicación que el texto que sigue a estos símbolos es un comentario y no debe ser ejecutado.</p>
-                        <p>Consulta original:<br>SELECT * FROM products WHERE category = ‘carros’ AND available = 1</p>
-                        <p>Consulta alterada:<br>SELECT * FROM products WHERE category = ‘carros’ OR 1=1– ’ AND available = 1</p>
-                        <p>Añadiendo (‘ OR 1=1) posterior a la palabra carros, podemos cambiar la estructura de la consulta, haciendo que realmente se esté evaluando la siguiente condición:</p>
-                        <p>Retorne de la tabla products los artículos que contengan en la columna category el texto carros o que 1 sea igual a 1.</p>
-                        <p>Cuando pensamos un poco esta consulta, podemos observar que cualquier consulta que se le haga a la tabla products va a ser verdadero, ya que no importa si contiene el texto carros, ya que la siguiente condición siempre va a ser verdadero (1=1), lo que automáticamente vuelve verdadera cualquier consulta y retornará todos los datos de la tabla sin importar qué categoría tengan asignada.</p>
+  <a class="skip" href="#main" lang="en">Skip to content</a>
 
-                        <h2>Identificando el tipo de base de datos</h2>
-                        <p>Debemos entender que aunque SQL es considerado un estándar para acceder y manipular información en bases de datos, debemos aclarar que hay diferencias en la forma que se deben realizar consultas, por esta razón, es una buena idea identificar el tipo de base de datos que estamos atacando para obtener los mejores resultados y al momento de encontrarnos con un problema, podemos estar seguro que nuestro error es en la estructura de la inyección y no en la estructuración errónea de esta debido a una confusión en el tipo de base de datos atacada.</p>
-                        <p>A continuación enunciaré la forma de identificarlos 4 tipos de bases de datos más comunes con los que nos podemos encontrar.</p>
-                        <p>
-                            MySQL: SELECT @@version<br>
-                            PostgreSQL: SELECT version()<br>
-                            Oracle: SELECT banner FROM v$version<br>
-                            Oracle: SELECT version FROM v$instance<br>
-                            Microsoft: SELECT @@version<br>
-                        </p>
-                        <p>Adicional, te dejo el link de una página de ayuda, que te puede mostrar las diferentes formas de realizar una inyección SQL dependiendo del tipo de base de datos que te encuentres, es parte del curso SQL Injection de PortSwigger Academy, el cual recomiendo seguir para afianzar los conocimientos y practicar en sus numerosos laboratorios cada procedimiento.</p>
-                        <p><a href="https://portswigger.net/web-security/sql-injection/cheat-sheet" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">SQL injection cheat sheet | Web Security Academy</a></p>
-                        <p>La información de esta publicación, puede ser adaptada al tipo de base de datos que requieras utilizando la página anterior perteneciente a PortSwigger Academy, y así ejecutar correctamente las inyecciones SQL referenciadas en esta publicación.</p>
-
-                        <h2>Retornando información valiosa</h2>
-                        <p>En estos momentos se puede pensar en lo poco valiosa que puede ser la información obtenida en el ejemplo anterior, por esta razón, iniciamos el proceso para retornar información que puede ser mucho más valiosa al momento de evaluar la seguridad de una aplicación web.</p>
-                        <p>Primero que todo, debemos entender una funcionalidad adicional, la forma de agregar o unir nuestra consulta a la consulta predefinida en la aplicación.</p>
-
-                        <h2>Ataques UNION</h2>
-                        <h3>Determinar el número de columnas requeridas para ejecutar el ataque</h3>
-                        <p>Posterior a determinar que se puede explotar esta vulnerabilidad, damos un paso adelante en nuestro proceso e intentamos retornar información como el usuario y las contraseñas de una tabla en la base de datos, por tal motivo, debemos primero saber de cuantas columnas está compuesta la consulta de la cual queremos tomar ventaja. Este procedimiento lo podemos realizar añadiendo SELECT y NULL las veces que sea necesario para que la aplicación deje de generar errores por la modificación de la consulta y nos muestre algo como (UNION SELECT NULL,NULL–).</p>
-                        <p>Esto lo conseguimos inyectando valores NULL en la consulta de la siguiente forma:</p>
-                        <p>SELECT * FROM products WHERE category = ‘’ UNION SELECT NULL,NULL–’ AND available = 1</p>
-                        <p>Perfecto, ahora ya sabemos que la tabla de la cual queremos sacar provecho tiene 2 columnas, ahora debesas averiguar cual de estas columnas retorna un valor string, ya que son de este tipo los datos de usuario y contraseña que queremos visualizar, esto lo hacemos simplemente reemplazando los valores de NULL por strings dentro de comillas simples:</p>
-                        <p>SELECT * FROM products WHERE category = ‘’ UNION SELECT ‘AAA’,NULL–’ AND available = 1</p>
-                        <p>Este procedimiento lo realizamos con cada valor de NULL para evaluar si podemos recuperar información tipo string desde estos parámetros. En este caso concluimos que ambos parámetros retornan el string ingresado, lo cual nos confirma que podemos hacer uso de estos para retornar la información que queremos.<br>Esto lo podemos realizar haciendo un llamado a la tabla users y retornando los valores de las columnas username y password:</p>
-                        <p>
-                            SELECT * FROM products WHERE category = ‘’ <b>UNION SELECT username,password FROM users–</b>’ AND available = 1
-                        </p>
-                        <p>
-                            <b>’ UNION SELECT username,password FROM users–</b>b>: Esta consulta nos retorna los usuarios y contraseñas en la posición que lo hubiera hecho la consulta original dentro de la página.
-                        </p>
-                        <h2>Inyección SQL Blind</h2>
-                        <p>Próximamente…</p><br>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <div class="controls">
-        <a href="index.html"><div class="control active-btn" data-id="blogs2" >
-                <i class="fas fa-arrow-left"></i>
-        </div></a>
+  <header class="nav" data-nav lang="en">
+    <div class="nav__inner">
+      <a class="nav__brand" href="index.html" aria-label="Manuel Montoya, home">
+        <svg class="nav__mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.6"/></svg>
+        <span>Manuel Montoya</span>
+      </a>
+      <button class="nav__menu" type="button" aria-expanded="false" aria-controls="nav-links" data-menu>Menu</button>
+      <nav class="nav__links" id="nav-links" aria-label="Sections">
+        <a href="index.html#endeavor">Endeavor</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#writing" aria-current="true">Writing</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <button class="nav__theme" type="button" data-theme-toggle aria-label="Switch to dark theme">
+        <svg class="icon icon--moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        <svg class="icon icon--sun" aria-hidden="true"><use href="#i-sun"/></svg>
+      </button>
     </div>
-    <div class="theme-btn">
-        <i class="fas fa-adjust"></i>
+    <div class="nav__track" aria-hidden="true">
+      <span class="nav__track-line"></span>
+      <svg class="nav__track-plane"><use href="#i-plane"/></svg>
     </div>
-    <script src="app.js"></script>
+  </header>
+
+  <main id="main" class="article">
+    <article>
+      <p class="article__back" lang="en"><a href="index.html#writing">All writing</a></p>
+      <h1 class="article__title">Inyección SQL paso a paso</h1>
+      <p class="article__meta" lang="en"><span>Security</span><span>Written in Spanish</span><span>10 min read</span></p>
+      <figure class="article__hero" style="view-transition-name: post-sql">
+        <img src="img/port1.jpg" alt="Manos sobre un teclado iluminado" width="700" height="466">
+      </figure>
+      <div class="prose">
+        <h2>Introducción</h2>
+
+        <p>Después de varios intentos para aprender cómo ejecutar inyecciones SQL, llegué al punto de reconocer muchos errores que cometí en este camino, y aclaro que aunque aún sigo siendo un novato en el tema, siento que todo hubiera sido mucho más fácil si hubiera entendido que todo tiene un proceso, y que definitivamente esta no era la excepción.</p>
+
+        <p>Primero que todo, pensar siquiera que puedes modificar y tomar ventaja sobre una base de datos SQL sin entender tan siquiera como es la estructura de una consulta SQL suena ridículo, reconozco que fue algo que no se me pasaba por la cabeza al momento de intentarlo. Nunca entendí por qué en los vídeos tutoriales y textos todo funcionaba sin ningún problema, pero al momento de intentarlo, nunca obtenía ningún resultado.</p>
+
+        <p>También reconozco que no fue un momento de iluminación en el que reconocí mi error y llegue al camino correcto mágicamente, realmente por cuestiones de trabajo recibí un proyecto donde debía continuar con un programa que hacía consultas a una Base de Datos SQL para verificar las salas de un evento virtual a las que se tenía acceso dependiendo del rol de cada persona, y fue hasta este momento que realmente empecé a entender los motivos por los que los esfuerzos que había hecho al intentar entender el mundo de las inyecciones SQL nunca había llegado a un feliz término.</p>
+
+        <p>Por último, quiero dejar plasmado en este documenta la forma en que considero que se puede llegar a aprender a realizar inyecciones SQL de la forma más eficiente y la cual me hubiera ahorrado perder tanto tiempo creyendo que ’ OR 1=1– era el inicio, cuando realmente es el final de un camino supremamente interesante.</p>
+
+        <p>Antes de iniciar, debo agregar que gracias a PortSwigger Academy, a su estructura e increíble contenido, fue que finalmente pude conectar todos los puntos, llegando al punto en que por fín me sentía cómodo hablando y explotando esta vulnerabilidad en diversos laboratorios. Recomiendo sinceramente este curso gratuito (el cual es solo el primero de más de 14 vulnerabilidades), y confieso que sus laboratorios son un reto, así como el mejor lugar para poner en práctica el conocimiento obtenido.</p>
+
+        <h2>Consultas SQL</h2>
+
+        <p>SQL (Structured Query Language), es un lenguaje estándar para acceder y manipular información en bases de datos.</p>
+
+        <p>Existen distintos tipos de bases de datos que utilizan en gran medida esta estándar, a continuación te menciono algunos:</p>
+
+        <ul>
+          <li>MySQL.</li>
+          <li>SQL Server.</li>
+          <li>Microsoft Access.</li>
+          <li>Oracle</li>
+          <li>Postgres</li>
+        </ul>
+
+        <p>Dentro de estas bases de datos no solo tenemos la capacidad de consultar, también nos permite realizar cálculos relacionales y nos permite el manejo del álgebra.</p>
+
+        <p>En este lenguaje manejamos una o varias base de datos compuesta por tablas, que a su vez están compuestas por filas y columnas, por ponerlo en términos sencillos. Por cuestiones prácticas no vamos a profundizar en las cientos de características que componen este lenguaje, pero si vamos a enunciar la forma básica en que se puede hacer una consulta en términos generales.</p>
+
+        <h3>Lenguaje de manipulación de datos DML</h3>
+
+        <p>Data Manipulation Language por su siglas en inglés, nos permite realizar consultas o manipulación de los datos.</p>
+
+        <dl>
+          <dt><code>SELECT</code></dt><dd>Seleccionar datos almacenados en una base de datos.</dd>
+          <dt><code>FROM</code></dt><dd>Nos permite indicar la tabla o tablas a las cuales se les va a realizar la consulta.</dd>
+          <dt><code>WHERE</code></dt><dd>Condición que deben cumplir los datos a devolver en la consulta.</dd>
+          <dt><code>AND</code> y <code>OR</code></dt><dd>Conectores lógicos.</dd>
+          <dt><code>*</code></dt><dd>Comodín utilizado para que la consulta nos devuelve todos los campos existentes en la tabla.</dd>
+          <dt><code>--</code></dt><dd>El doble guion es un indicador de comentario, lo que nos indica que desde estos dos símbolos hacia adelante en la línea, se tomará como un comentario, el cual no hace parte de la consulta.</dd>
+        </dl>
+
+        <p>Nota: Las buenas prácticas nos recomienda escribir estas palabras clave en mayúsculas, esto también nos ayuda a diferenciarlas al momento de escribir y leer una consulta SQL.</p>
+
+        <p><b>Ejemplo:</b></p>
+
+        <pre><code>SELECT * FROM products WHERE category = 'carros' AND available = 1</code></pre>
+
+        <p>Esta consulta puede ser realizada en una página de artículos, donde se quiera retornar toda la información (denotado por el símbolo “*”), de la tabla “products”, donde la columna “category” sea igual a carros y que también contenga la columna “available” igual a 1.</p>
+
+        <pre><code>SELECT * FROM users WHERE username='administrator' AND password='password123'</code></pre>
+
+        <p>Esta consulta puede ser usada para verificar que que la contraseña ingresada pertenezca al usuario especificado, en este caso se consulta la tabla “users” para confirmar que la clave de la cuenta “administrador” sea igual a “password123”.</p>
+
+        <h2>¿Qué es una inyección SQL?</h2>
+
+        <p>La inyección SQL (iSQL/SQL inyection), es una vulnerabilidad web, la cual se basa en interferir las consultas que una aplicación hace a su base de datos por parte de un atacante. Las consecuencias de esta vulnerabilidad pueden variar, pero generalmente inician con la consulta de información de la base de datos que normalmente no se estaría autorizado a visualizar. Esto puede ir desde información restringida de un blog, hasta los usuarios, contraseñas e incluso información de tarjetas de crédito.<br>
+        En muchos casos, esta vulnerabilidad puede llevar a la modificación o eliminación de la información de la base de datos.</p>
+
+        <h3>Tipos de Inyección SQL:</h3>
+
+        <ul>
+          <li><b>In Band (Classic).</b></li>
+          <li>Error</li>
+          <li>Union</li>
+          <li><b>Inferential (Blind).</b></li>
+          <li>Boolean.</li>
+          <li>Time</li>
+          <li><b>Out of Band.</b></li>
+        </ul>
+
+        <h2>Primera Inyección SQL</h2>
+
+        <p>Dejando al lado un poco la teoría y adentrándonos un poco más a la práctica, quiero mencionar un poco el proceso básico para realizar una inyección SQL.</p>
+
+        <p>Tomando nuevamente el ejemplo anterior de consulta de contenido de una categoría a una página con distintos artículos:</p>
+
+        <pre><code>SELECT * FROM products WHERE category = 'carros' AND available = 1</code></pre>
+
+        <p>Donde posiblemente en la url del sitio podríamos observar lo siguiente:</p>
+
+        <pre><code>https://manuelmontoya.info/blog/products?category=carros</code></pre>
+
+        <p>Ahora que podemos visualizar fácilmente el lugar que va a tomar la variable “carros” dentro de la consulta a la base de datos, y es en este punto donde podemos iniciar nuestro camino para evaluar si esta consulta puede conllevar a un vulnerabilidad de inyección SQL.</p>
+
+        <p>No solo debemos evaluar si esta consulta es o no vulnerable, adicionalmente debemos evaluar a qué tipo de inyección SQL es vulnerable, así como cuál es el mejor método de explotarlo.</p>
+
+        <p>Aunque no siempre funciona, la forma más sencilla de evaluar si un parámetro puede ser vulnerable a una inyección SQL es ingresando el símbolo de comilla simple (<code>'</code>), el cual puede resultar en un mensaje de error dentro de la página web, más adelante nos adentraremos en situaciones más complejas para identificar este tipo de vulnerabilidades.</p>
+
+        <p>Ahora podemos ver que este mismo símbolo de comillas simples es usado para delimitar el parámetro ‘carros’ en la consulta. Con esto en mente, podemos empezar a pensar cómo modificar y explotar esta vulnerabilidad.</p>
+
+        <p>Partiendo del hecho que conocemos que esta consulta puede ser vulnerable, podemos hacer una prueba inicial, buscando que la consulta no solo retorne una categoría “carros”, sino que devuelva todas las categorías de la base de datos, esto lo podemos lograr utilizando las comillas simples, las cuales nos permitirán engañar a la aplicación y el doble guión, el cual nos permite hacer pensar a la aplicación que el texto que sigue a estos símbolos es un comentario y no debe ser ejecutado.</p>
+
+        <p>Consulta original:</p>
+
+        <pre><code>SELECT * FROM products WHERE category = 'carros' AND available = 1</code></pre>
+
+        <p>Consulta alterada:</p>
+
+        <pre><code>SELECT * FROM products WHERE category = 'carros' OR 1=1--' AND available = 1</code></pre>
+
+        <p>Añadiendo <code>' OR 1=1--</code> posterior a la palabra carros, podemos cambiar la estructura de la consulta, haciendo que realmente se esté evaluando la siguiente condición:</p>
+
+        <p>Retorne de la tabla products los artículos que contengan en la columna category el texto carros o que 1 sea igual a 1.</p>
+
+        <p>Cuando pensamos un poco esta consulta, podemos observar que cualquier consulta que se le haga a la tabla products va a ser verdadero, ya que no importa si contiene el texto carros, ya que la siguiente condición siempre va a ser verdadero (1=1), lo que automáticamente vuelve verdadera cualquier consulta y retornará todos los datos de la tabla sin importar qué categoría tengan asignada.</p>
+
+        <h2>Identificando el tipo de base de datos</h2>
+
+        <p>Debemos entender que aunque SQL es considerado un estándar para acceder y manipular información en bases de datos, debemos aclarar que hay diferencias en la forma que se deben realizar consultas, por esta razón, es una buena idea identificar el tipo de base de datos que estamos atacando para obtener los mejores resultados y al momento de encontrarnos con un problema, podemos estar seguro que nuestro error es en la estructura de la inyección y no en la estructuración errónea de esta debido a una confusión en el tipo de base de datos atacada.</p>
+
+        <p>A continuación enunciaré la forma de identificarlos 4 tipos de bases de datos más comunes con los que nos podemos encontrar.</p>
+
+        <pre><code>MySQL: SELECT @@version
+        PostgreSQL: SELECT version()
+        Oracle: SELECT banner FROM v$version
+        Oracle: SELECT version FROM v$instance
+        Microsoft: SELECT @@version</code></pre>
+
+        <p>Adicional, te dejo el link de una página de ayuda, que te puede mostrar las diferentes formas de realizar una inyección SQL dependiendo del tipo de base de datos que te encuentres, es parte del curso SQL Injection de PortSwigger Academy, el cual recomiendo seguir para afianzar los conocimientos y practicar en sus numerosos laboratorios cada procedimiento.</p>
+
+        <p><a href="https://portswigger.net/web-security/sql-injection/cheat-sheet" target="_blank" rel="noopener noreferrer">SQL injection cheat sheet | Web Security Academy</a></p>
+
+        <p>La información de esta publicación, puede ser adaptada al tipo de base de datos que requieras utilizando la página anterior perteneciente a PortSwigger Academy, y así ejecutar correctamente las inyecciones SQL referenciadas en esta publicación.</p>
+
+        <h2>Retornando información valiosa</h2>
+
+        <p>En estos momentos se puede pensar en lo poco valiosa que puede ser la información obtenida en el ejemplo anterior, por esta razón, iniciamos el proceso para retornar información que puede ser mucho más valiosa al momento de evaluar la seguridad de una aplicación web.</p>
+
+        <p>Primero que todo, debemos entender una funcionalidad adicional, la forma de agregar o unir nuestra consulta a la consulta predefinida en la aplicación.</p>
+
+        <h2>Ataques UNION</h2>
+
+        <h3>Determinar el número de columnas requeridas para ejecutar el ataque</h3>
+
+        <p>Posterior a determinar que se puede explotar esta vulnerabilidad, damos un paso adelante en nuestro proceso e intentamos retornar información como el usuario y las contraseñas de una tabla en la base de datos, por tal motivo, debemos primero saber de cuantas columnas está compuesta la consulta de la cual queremos tomar ventaja. Este procedimiento lo podemos realizar añadiendo SELECT y NULL las veces que sea necesario para que la aplicación deje de generar errores por la modificación de la consulta y nos muestre algo como (UNION SELECT NULL,NULL–).</p>
+
+        <p>Esto lo conseguimos inyectando valores NULL en la consulta de la siguiente forma:</p>
+
+        <pre><code>SELECT * FROM products WHERE category = '' UNION SELECT NULL,NULL--' AND available = 1</code></pre>
+
+        <p>Perfecto, ahora ya sabemos que la tabla de la cual queremos sacar provecho tiene 2 columnas, ahora debesas averiguar cual de estas columnas retorna un valor string, ya que son de este tipo los datos de usuario y contraseña que queremos visualizar, esto lo hacemos simplemente reemplazando los valores de NULL por strings dentro de comillas simples:</p>
+
+        <pre><code>SELECT * FROM products WHERE category = '' UNION SELECT 'AAA',NULL--' AND available = 1</code></pre>
+
+        <p>Este procedimiento lo realizamos con cada valor de NULL para evaluar si podemos recuperar información tipo string desde estos parámetros. En este caso concluimos que ambos parámetros retornan el string ingresado, lo cual nos confirma que podemos hacer uso de estos para retornar la información que queremos.<br>
+        Esto lo podemos realizar haciendo un llamado a la tabla users y retornando los valores de las columnas username y password:</p>
+
+        <pre><code>SELECT * FROM products WHERE category = '' <b>UNION SELECT username,password FROM users--</b>' AND available = 1</code></pre>
+
+        <p><code>' UNION SELECT username,password FROM users--</code>: Esta consulta nos retorna los usuarios y contraseñas en la posición que lo hubiera hecho la consulta original dentro de la página.</p>
+
+        <h2>Inyección SQL Blind</h2>
+
+        <p>Próximamente…</p>
+      </div>
+    </article>
+    <nav class="article__foot" aria-label="More writing" lang="en">
+      <a href="index.html#writing">All writing</a>
+      <a href="snort2.html">Next: Snort 2: installation and configuration</a>
+    </nav>
+  </main>
+
+  <footer class="footer" lang="en">
+    <p>© <span data-year>2026</span> Manuel Montoya</p>
+    <p class="footer__coords">4°42′N 74°09′W</p>
+    <p>Handmade with HTML, CSS and JavaScript.</p>
+  </footer>
+
+  <script src="js/site.js" defer></script>
 </body>
 </html>

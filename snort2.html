@@ -1,306 +1,286 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manuel Montoya</title>
-    <link rel="icon" href="assets/favicon.png">
-    <link rel="stylesheet" href="styles/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Snort 2: instalación y configuración | Manuel Montoya</title>
+  <meta name="description" content="Instalar Snort 2 en Debian, configurar sus variables de red y entender la estructura de una regla de detección. Por Manuel Montoya.">
+  <meta name="theme-color" content="#EEF2F0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0D1724" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Snort 2: instalación y configuración">
+  <meta property="og:description" content="Instalar Snort 2 en Debian, configurar sus variables de red y entender la estructura de una regla de detección. Por Manuel Montoya.">
+  <meta property="og:image" content="https://manuelmontoya.dev/img/snort2.jpeg">
+  <link rel="canonical" href="https://manuelmontoya.dev/snort2.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="assets/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+  <link rel="stylesheet" href="css/site.css">
+  <script>
+    /* Set theme and motion flags before first paint to avoid a flash. */
+    (function () {
+      var d = document.documentElement, saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (e) {}
+      var dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+      d.dataset.theme = dark ? 'dark' : 'light';
+      d.classList.add('js');
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('motion');
+    })();
+  </script>
 </head>
-<body class="main-content">
-    <header class="container-2 header active" id="home">
-        <div class="blogs-content">
-            <div class="main-title">
-                <h2>My <span>Blogs</span><span class="bg-text">My Blogs</span></h2>
-            </div>
-            <div class="article-blogs">
-                <div class="article-blog">
-                    <img src="img/snort2.jpeg" alt="SQLi" class="title-img">
-                    <div class="article-blog-text">
-                        <h1>
-                            Snort 2<br>Instalación y configuración
-                        </h1>
-                        <h2>
-                            ¿Qué es Snort?
-                        </h2>
-                        <p>
-                            Snort es el sistema de prevención/detección de intrusos de código abierto más importante del mundo. Snort utiliza una serie de reglas que permiten identificar actividades sospechosas en la red, utilizando estas reglas para buscar coincidencias con los paquetes encontrados en la red y generar alertas.
-                        </p>
-                        <h2>
-                            Definición IDS
-                        </h2>
-                        <p>
-                            IDS, sistema de detección de intrusos, o por sus siglas en inglés Intrusion Detection System, es una solución de
-                            monitoreo pasivo para la detección de posibles acciones o patrones sospechosos, incidentes anormales y violaciones de políticas de seguridad. Este es responsable por la generación de alertas por cada evento sospechoso.
-                        </p>
-                        <h2>
-                            Definición IPS
-                        </h2>
-                        <p>
-                            IPS, sistema de prevención de intrusos, o por sus siglas en inglés Intrusion Prevention System, es una solución de protección activa para la prevención de posibles acciones o patrones sospechosos, incidentes anormales y violaciones de políticas de seguridad. Este es responsable de detener/prevenir/terminar el evento sospechoso tan pronto se realiza la detección.
-                        </p>
-                        <h2>   
-                            Instalación
-                        </h2>
-                        <p>
-                            Para la instalación de Snort, tomaremos como referencia el sistema operativo Debian.
-                        </p>
-                        <p>    
-                            Instalación desde repositorio:
-                        </p>
-                        <p>
-                            sudo apt install snort
-                        </p><br>
-                        <h3>                            
-                            Flags útiles
-                        </h3>
-                            <ul>
-                                -V / –version    Este parámetro proporciona información sobre la versión de Snort.
-                            </ul>
-                            <ul>
-                                -c    Identifica el archivo de configuración.
-                            </ul>
-                            <ul>
-                                -T    Parámetro de autocomprobación de Snort, se puede probar la configuración de Snort con este parámetro.
-                            </ul>
-                            <ul>
-                                - q    Modo silencioso, se usa para evitar que Snort muestre el banner predeterminado y la información sobre su configuración.
-                            </ul>
-                            <ul>
-                                -d    Display the packet data payload (Application Layer).
-                            </ul>
-                            <ul>
-                                -e    Display TCP/IP/UDP/ICMP headers (Second Layer/Data-Link Layer).
-                            </ul>
-                            <ul>
-                                -i &lt;if&gt;    Este parámetro ayuda a definir una interfaz de red específica para escuchar/sniff. La interfaz por defecto es eth0.
-                            </ul>
-                            <ul>
-                                -l    Logger mode, registro de destino y directorio de registro de alertas. La carpeta de logs por defecto para Snort es /var/log/snort.
-                            </ul>
-                            <ul>
-                                -v    Verbosidad.
-                            </ul>
-                        <h2>
-                            Iniciar Snort
-                        </h2>
-                        <p>
-                            Para iniciar Snort en modo sniffer (packet dump mode), y realizar el registro de los paquetes detectados, hacemos el llamado a Snort con las siguiente configuración.
-                        </p>
-                        <p> 
-                            Snort -i wlan0 -vde
-                        </p>
-                        <p> 
-                            Para iniciar Snort como un NIDS (Network Intrusion Detection System), debemos incluir el archivo de configuración y reglas al hacer nuestro llamado a Snort.
-                        </p>
-                        <p> 
-                            snort -vde -c /etc/snort/snort.conf
-                        </p><br><br>
-                        <h2>
-                            Archivo de configuración de Snort
-                        </h2>
-                        <p>
-                            El archivo de configuración de Snort es usado para especificar la configuración que queremos usar al momento de ejecutar Snort, este esta ubicado en /etc/snort/snort.conf.
-                        </p>
-                        <p>
-                            Podemos abrir y modificar este archivo mediante el editor de texto nano.
-                        </p>
-                        <p>
-                            nano /etc/snort/snort.conf
-                        </p>
-                        <p>
-                            Aquí puedes ver los 9 pasos para configurar Snort.
-                        </p>
-                        <p>    
-                            ###################################################<br>
-                            # This file contains a sample snort configuration.<br>
-                            # You should take the following steps to create your own custom configuration:<br>
-                            #<br>
-                            #  1) Set the network variables.<br>
-                            #  2) Configure the decoder<br>
-                            #  3) Configure the base detection engine<br>
-                            #  4) Configure dynamic loaded libraries<br>
-                            #  5) Configure preprocessors<br>
-                            #  6) Configure output plugins<br>
-                            #  7) Customize your rule set<br>
-                            #  8) Customize preprocessor and decoder rule set<br>
-                            #  9) Customize shared object rule set<br>
-                            ###################################################<br>
-                        </p>
-                        <p>
-                            En este documento solo mencionaremos algunos de estos pasos, buscando realizar una configuración básica de Snort.
-                        </p>
-                        <h3>
-                            1) Set the network variables.
-                        </h3>
-                        <p>
-                            ipvar HOME_NET any
-                        </p>
-                        <p>
-                            La variable HOME_NET, representa la parte de nuestra red en la que confiamos y queremos proteger, esta variable puede ser solo una IP, una lista de IPs separadas por comas, una subnet en notación CIDR, o simplemente “any”.<br>
-                            La mejor práctica es asignar a la variable HOME_NET la subnet que estámos protegiendo en notación CIDR, en mi caso es la siguiente:<br>
-                            ipvar HOME_NET 192.168.0.0/24<br><br>
-                        </p>    
-                        <p>   
-                            ipvar EXTERNAL_NET any
-                        </p>
-                        <p>    
-                            Para la variable EXTERNEL_NET, podemos asignarle todo lo que no sea HOME_NET, y esto lo hacemos anteponiendo el símbolo ! a la variableHOME_NET de la siguiente manera:
-                        </p>
-                        <p>    
-                            ipvar EXTERNAL_NET !$HOME_NET
-                        </p>
-                        <h3>
-                            6) Configure output plugins
-                        </h3>
-                        <p>
-                            En esta sección podemos definir dónde y cómo se envían las alertas y registros (logs).
-                        </p>    
-                        <p>
-                            “output unified2”, esta línea es lo que Snort llama “unified logging”, este se encarga de registrar los paquetes completos y las alertas.
-                        </p>
-                        <h3>    
-                            7) Customize your rule set
-                        </h3>    
-                        <p>
-                            include $RULE_PATH/local.rules<br>
-                            Esta línea especifica la ruta de nuestras reglas personalizadas.<br><br>
-                            
-                            Para realizar una buena configuración y creación de reglas, es recomendable deshabilitar las reglas existentes, esto en parte porque pueden generar errores o ser una versión muy antigua que realmente no son muy efectivas contra los ataques actuales.<br>
-                            Posterior a comentar las reglas que vienen por defecto o en su defecto eliminarlas, procedemos a guardar los cambios en el archivo de configuración de Snort.
-                        </p>    
-                        <h2>
-                            Probar la correcta configuración de Snort.
-                        </h2>
-                        <p>
-                            Para realizar la comprobación de la correcta configuración del archivo snort.conf, podemos hacer uno de la bandera “-T”, la cual nos permite especificar el archivo de configuración con la bandera “-c” y tan solo con estos parámetros obtendremos una respuesta de test de configuración.
-                        </p>
-                        <p>
-                            snort -T -c /etc/snort/snort.conf
-                        </p>    
-                        <h2>                          
-                            Entendiendo la estructura de una regla
-                        </h2>
-                        <p>    
-                            Para este capítulo, analizaremos unas de las reglas que se encuentran en el archivo scan.rules dentro de la carpeta de reglas de Snort /etc/snort/rules.<br><br>
-                            alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"SCAN SYN FIN"; flow:stateless; flags:SF,12; reference:arachnids,198; classtype:attempted-recon; sid:624; rev:7;)
-                            <br><br><br>
-                            Para un mejor análisis de esta regla, vamos a dividirla en dos partes, rule header y rule options.
-                        </p>   
-                        <h3>                         
-                            Rule Header
-                        </h3>
-                        <p>
-                            ​alert tcp $EXTERNAL_NET any -> $HOME_NET any
-                        </p>   
-                        <ul> 
-                            <li>
-                                alert: Acción, esta puede ser alert, log, o pass (drop).
-                            </li>
-                            <li>
-                                tcp: Protocolo del tráfico que la regla está buscando. Puede ser tcp, udp, y icmp.
-                            </li>
-                            <li>
-                                $EXTERNAL_NET: IP de origen o red de origen del paquete malicioso. Esta puede ser definida como una variable en el archivo de configuración de Snort en /etc/snort/snort.conf.
-                            </li>
-                            <li>
-                                any: Puerto de origen. Este puede ser un único puerto (22), múltiples puertos (22,80), o un rango de puertos (22:100).
-                            </li>
-                            <li>
-                                ->: Dirección del tráfico. En este caso, estamos buscando tráfico originado desde EXTERNAL_NET hacia HOME_NET. Otra opcion para este parámetro es “&lt;&gt;”.
-                            </li>
-                            <li>
-                                $HOME_NET: IP de destino del tráfico. Esta puede ser definida como una variable en el archivo de configuración de Snort en /etc/snort/snort.conf.
-                            </li>
-                            <li>
-                                any: Puerto de destino. Este puede ser un puerto específico (22), o una variable conteniendo una lista de puertos.
-                            </li>
-                        </ul>
-                        <p>
-                            <br>
-                            Nota: recuerda que puedes negar distintos parámetros, incluidos los puertos anteponiendo el símbolo “!”.<br>
-                            De esta forma con “!22”, quedará especificado que son todos los puertos excepto el puerto 22.
-                        </p>
-                        <h3>
-                            Rule Options
-                        </h3>
-                        <p>
-                            Esta segunda parte de la regla se puede diferenciar fácilmente ya que está encerrada dentro de paréntesis y está compuesta por una palabra clave, dos puntos y un argumento.
-                            <br>
-                            Ejemplo:
-                            <br>
-                            keyword:argument
-                            <br><br>
-                            Rule Option:
-                            <br>
-                            (msg:"SCAN SYN FIN"; flow:stateless; flags:SF,12; reference:arachnids,198; classtype:attempted-recon; sid:624; rev:7;)
-                        </p>    
-                        <ul>
-                            <li>    
-                                msg: Este es el mensaje que se envía al sysadmin si la regla se cumple y es activada. El mensaje en este caso es “SCAN SYN FIN”.
-                                <br><br>
-                            </li>    
-                            <li>
-                                flow: Esta opción permite a la regla verificar el flujo del tráfico. Esta opción puede ser “established” (Conexión TCP establecida), “not established” (Conexión TCP no establecida), “stateless” (Conexión establecidas y no establecidas). A continuación dejamos las distintas opciones que pueden ser usadas, estas fueron sacadas del manual oficial de Snort.
-                                <br><br>
-                            </li>    
-                            <li>
-                                flags: Esta sección es para las banderas TCP. 
-                                F - FIN - Finish (LSB in TCP Flags byte)
-                                S - SYN - Synchronize sequence numbers
-                                R - RST - Reset
-                                P - PSH - Push
-                                A - ACK - Acknowledgment
-                                U - URG - Urgent
-                                C - CWR - Congestion Window Reduced (MSB in TCP Flags byte)
-                                E - ECE - ECN-Echo (If SYN, then ECN capable. Else, CE flag in IP header is set)
-                                0 - No TCP Flags Set
-                            </li>
-                            <br><br>
-                            <p>                                
-                                En este caso la regla está buscando tráfico que contenga la bandera SYN y FIN (SF) y adicionalmente tiene los dos bits reservados (12) en la bandera.
-                            </p>
-                            <li>    
-                                reference: Esta sección es utilizada para extender la información y hacer referencia a una base de datos de seguridad, en este caso podemos obtener más información sobre este ataque en la base de datos de arachnids, attack 198.
-                            </li>
-                            <li>
-                                classtype: Todas las reglas están clasificadas en numerosas categorías para ayudar a entender al administrador el tipo de ataque que fue realizado. En el caso particular del ejemplo, el ataque fue clasificado como un “attempted-recon”.
-                            </li>
-                            <br><br>
-                            <li>
-                                sid: (Signature ID) este es el identificador de la regla dentro de Snort. Cada regla debe tener un ID único. En este caso, el ID de la regla es “624”.
-                            </li>
-                            <br><br>
-                            <li>
-                                rev: A medida que se revisan, mejoran o modifican las reglas, se les asigna un número de revisión. En el caso particular del ejemplo, esta es la revisión “7” de esta regla.
-                            </li>
-                            <br><br>    
-                            <li>    
-                                content: En esta opción se especifica el contenido que se intenta encontrar en el paquete y lanzar la acción especificada al inicio de la regla. Estos pueden especificarse de distintas formas.    
-                                content: “CONTENIDO”
-                                content: “| 54 14 4C 4F 53 | Intelligence”
-                                content: !”SNORT” 
-                            </li>
-                        </ul>
-                        <br><br>                       
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <div class="controls">
-        <a href="index.html"><div class="control active-btn" data-id="blogs2" >
-                <i class="fas fa-arrow-left"></i>
-        </div></a>
+<body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <!-- Cyanotype duotone: shadows to chart ink, mids to airspace blue, highlights to paper. -->
+      <filter id="duo-light" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0"/>
+        <feComponentTransfer>
+          <feFuncR type="table" tableValues="0.075 0.114 0.933"/>
+          <feFuncG type="table" tableValues="0.145 0.353 0.949"/>
+          <feFuncB type="table" tableValues="0.231 0.639 0.941"/>
+        </feComponentTransfer>
+      </filter>
+      <filter id="duo-dark" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0"/>
+        <feComponentTransfer>
+          <feFuncR type="table" tableValues="0.051 0.235 0.894"/>
+          <feFuncG type="table" tableValues="0.09 0.4 0.925"/>
+          <feFuncB type="table" tableValues="0.141 0.62 0.953"/>
+        </feComponentTransfer>
+      </filter>
+    </defs>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 20h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></g></symbol>
+    <symbol id="i-out" viewBox="0 0 24 24"><path d="M8 16 16 8m-6.5 0H16v6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M16 8V5.5A1.5 1.5 0 0 0 14.5 4h-9A1.5 1.5 0 0 0 4 5.5v9A1.5 1.5 0 0 0 5.5 16H8"/></g></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2m0 15v2M2.5 12h2m15 0h2M5.3 5.3l1.4 1.4m10.6 10.6 1.4 1.4m0-13.4-1.4 1.4M6.7 17.3l-1.4 1.4"/></g></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23Zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64Z"/></symbol>
+    <!-- Top-down airliner, nose pointing north (up). -->
+    <symbol id="i-plane" viewBox="-12 -12 24 24"><path fill="currentColor" d="M0-11.5c1 0 1.5 1.3 1.5 2.6V-3l9.5 5.4v2.1L1.5 1.9 1.3 7.4l3.2 2.4v1.6L0 10.2l-4.5 1.2V9.8l3.2-2.4-.2-5.5L-11 4.5V2.4L-1.5-3v-5.9c0-1.3.5-2.6 1.5-2.6Z"/></symbol>
+  </svg>
+
+  <a class="skip" href="#main" lang="en">Skip to content</a>
+
+  <header class="nav" data-nav lang="en">
+    <div class="nav__inner">
+      <a class="nav__brand" href="index.html" aria-label="Manuel Montoya, home">
+        <svg class="nav__mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.6"/></svg>
+        <span>Manuel Montoya</span>
+      </a>
+      <button class="nav__menu" type="button" aria-expanded="false" aria-controls="nav-links" data-menu>Menu</button>
+      <nav class="nav__links" id="nav-links" aria-label="Sections">
+        <a href="index.html#endeavor">Endeavor</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#writing" aria-current="true">Writing</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <button class="nav__theme" type="button" data-theme-toggle aria-label="Switch to dark theme">
+        <svg class="icon icon--moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        <svg class="icon icon--sun" aria-hidden="true"><use href="#i-sun"/></svg>
+      </button>
     </div>
-    <div class="theme-btn">
-        <i class="fas fa-adjust"></i>
+    <div class="nav__track" aria-hidden="true">
+      <span class="nav__track-line"></span>
+      <svg class="nav__track-plane"><use href="#i-plane"/></svg>
     </div>
-    <script src="app.js"></script>
+  </header>
+
+  <main id="main" class="article">
+    <article>
+      <p class="article__back" lang="en"><a href="index.html#writing">All writing</a></p>
+      <h1 class="article__title">Snort 2: instalación y configuración</h1>
+      <p class="article__meta" lang="en"><span>Security</span><span>Written in Spanish</span><span>7 min read</span></p>
+      <figure class="article__hero" style="view-transition-name: post-snort">
+        <img src="img/snort2.jpeg" alt="Logotipo de Snort" width="552" height="368">
+      </figure>
+      <div class="prose">
+        <h2>¿Qué es Snort?</h2>
+
+        <p>Snort es el sistema de prevención/detección de intrusos de código abierto más importante del mundo. Snort utiliza una serie de reglas que permiten identificar actividades sospechosas en la red, utilizando estas reglas para buscar coincidencias con los paquetes encontrados en la red y generar alertas.</p>
+
+        <h2>Definición IDS</h2>
+
+        <p>IDS, sistema de detección de intrusos, o por sus siglas en inglés Intrusion Detection System, es una solución de
+        monitoreo pasivo para la detección de posibles acciones o patrones sospechosos, incidentes anormales y violaciones de políticas de seguridad. Este es responsable por la generación de alertas por cada evento sospechoso.</p>
+
+        <h2>Definición IPS</h2>
+
+        <p>IPS, sistema de prevención de intrusos, o por sus siglas en inglés Intrusion Prevention System, es una solución de protección activa para la prevención de posibles acciones o patrones sospechosos, incidentes anormales y violaciones de políticas de seguridad. Este es responsable de detener/prevenir/terminar el evento sospechoso tan pronto se realiza la detección.</p>
+
+        <h2>Instalación</h2>
+
+        <p>Para la instalación de Snort, tomaremos como referencia el sistema operativo Debian.</p>
+
+        <p>Instalación desde repositorio:</p>
+
+        <pre><code>sudo apt install snort</code></pre>
+
+        <h3>Flags útiles</h3>
+
+        <dl>
+          <dt><code>-V</code>, <code>--version</code></dt><dd>Este parámetro proporciona información sobre la versión de Snort.</dd>
+          <dt><code>-c</code></dt><dd>Identifica el archivo de configuración.</dd>
+          <dt><code>-T</code></dt><dd>Parámetro de autocomprobación de Snort, se puede probar la configuración de Snort con este parámetro.</dd>
+          <dt><code>-q</code></dt><dd>Modo silencioso, se usa para evitar que Snort muestre el banner predeterminado y la información sobre su configuración.</dd>
+          <dt><code>-d</code></dt><dd>Display the packet data payload (Application Layer).</dd>
+          <dt><code>-e</code></dt><dd>Display TCP/IP/UDP/ICMP headers (Second Layer/Data-Link Layer).</dd>
+          <dt><code>-i &lt;if&gt;</code></dt><dd>Este parámetro ayuda a definir una interfaz de red específica para escuchar/sniff. La interfaz por defecto es eth0.</dd>
+          <dt><code>-l</code></dt><dd>Logger mode, registro de destino y directorio de registro de alertas. La carpeta de logs por defecto para Snort es /var/log/snort.</dd>
+          <dt><code>-v</code></dt><dd>Verbosidad.</dd>
+        </dl>
+
+        <h2>Iniciar Snort</h2>
+
+        <p>Para iniciar Snort en modo sniffer (packet dump mode), y realizar el registro de los paquetes detectados, hacemos el llamado a Snort con las siguiente configuración.</p>
+
+        <pre><code>snort -i wlan0 -vde</code></pre>
+
+        <p>Para iniciar Snort como un NIDS (Network Intrusion Detection System), debemos incluir el archivo de configuración y reglas al hacer nuestro llamado a Snort.</p>
+
+        <pre><code>snort -vde -c /etc/snort/snort.conf</code></pre>
+
+        <h2>Archivo de configuración de Snort</h2>
+
+        <p>El archivo de configuración de Snort es usado para especificar la configuración que queremos usar al momento de ejecutar Snort, este esta ubicado en /etc/snort/snort.conf.</p>
+
+        <p>Podemos abrir y modificar este archivo mediante el editor de texto nano.</p>
+
+        <pre><code>nano /etc/snort/snort.conf</code></pre>
+
+        <p>Aquí puedes ver los 9 pasos para configurar Snort.</p>
+
+        <pre><code>###################################################
+        # This file contains a sample snort configuration.
+        # You should take the following steps to create your own custom configuration:
+        #
+        #  1) Set the network variables.
+        #  2) Configure the decoder
+        #  3) Configure the base detection engine
+        #  4) Configure dynamic loaded libraries
+        #  5) Configure preprocessors
+        #  6) Configure output plugins
+        #  7) Customize your rule set
+        #  8) Customize preprocessor and decoder rule set
+        #  9) Customize shared object rule set
+        ###################################################</code></pre>
+
+        <p>En este documento solo mencionaremos algunos de estos pasos, buscando realizar una configuración básica de Snort.</p>
+
+        <h3>1) Set the network variables.</h3>
+
+        <pre><code>ipvar HOME_NET any</code></pre>
+
+        <p>La variable HOME_NET, representa la parte de nuestra red en la que confiamos y queremos proteger, esta variable puede ser solo una IP, una lista de IPs separadas por comas, una subnet en notación CIDR, o simplemente <code>any</code>.</p>
+
+        <p>La mejor práctica es asignar a la variable HOME_NET la subnet que estámos protegiendo en notación CIDR, en mi caso es la siguiente:</p>
+
+        <pre><code>ipvar HOME_NET 192.168.0.0/24</code></pre>
+
+        <pre><code>ipvar EXTERNAL_NET any</code></pre>
+
+        <p>Para la variable EXTERNEL_NET, podemos asignarle todo lo que no sea HOME_NET, y esto lo hacemos anteponiendo el símbolo ! a la variableHOME_NET de la siguiente manera:</p>
+
+        <pre><code>ipvar EXTERNAL_NET !$HOME_NET</code></pre>
+
+        <h3>6) Configure output plugins</h3>
+
+        <p>En esta sección podemos definir dónde y cómo se envían las alertas y registros (logs).</p>
+
+        <p><code>output unified2</code>: esta línea es lo que Snort llama “unified logging”, este se encarga de registrar los paquetes completos y las alertas.</p>
+
+        <h3>7) Customize your rule set</h3>
+
+        <pre><code>include $RULE_PATH/local.rules</code></pre>
+
+        <p>Esta línea especifica la ruta de nuestras reglas personalizadas.</p>
+
+        <p>Para realizar una buena configuración y creación de reglas, es recomendable deshabilitar las reglas existentes, esto en parte porque pueden generar errores o ser una versión muy antigua que realmente no son muy efectivas contra los ataques actuales. Posterior a comentar las reglas que vienen por defecto o en su defecto eliminarlas, procedemos a guardar los cambios en el archivo de configuración de Snort.</p>
+
+        <h2>Probar la correcta configuración de Snort.</h2>
+
+        <p>Para realizar la comprobación de la correcta configuración del archivo snort.conf, podemos hacer uno de la bandera “-T”, la cual nos permite especificar el archivo de configuración con la bandera “-c” y tan solo con estos parámetros obtendremos una respuesta de test de configuración.</p>
+
+        <pre><code>snort -T -c /etc/snort/snort.conf</code></pre>
+
+        <h2>Entendiendo la estructura de una regla</h2>
+
+        <p>Para este capítulo, analizaremos unas de las reglas que se encuentran en el archivo scan.rules dentro de la carpeta de reglas de Snort <code>/etc/snort/rules</code>.</p>
+
+        <pre><code>alert tcp $EXTERNAL_NET any -&gt; $HOME_NET any (msg:"SCAN SYN FIN"; flow:stateless; flags:SF,12; reference:arachnids,198; classtype:attempted-recon; sid:624; rev:7;)</code></pre>
+
+        <p>Para un mejor análisis de esta regla, vamos a dividirla en dos partes, rule header y rule options.</p>
+
+        <h3>Rule Header</h3>
+
+        <pre><code>alert tcp $EXTERNAL_NET any -&gt; $HOME_NET any</code></pre>
+
+        <ul>
+          <li><code>alert</code>: Acción, esta puede ser alert, log, o pass (drop).</li>
+          <li><code>tcp</code>: Protocolo del tráfico que la regla está buscando. Puede ser tcp, udp, y icmp.</li>
+          <li><code>$EXTERNAL_NET</code>: IP de origen o red de origen del paquete malicioso. Esta puede ser definida como una variable en el archivo de configuración de Snort en /etc/snort/snort.conf.</li>
+          <li><code>any</code>: Puerto de origen. Este puede ser un único puerto (22), múltiples puertos (22,80), o un rango de puertos (22:100).</li>
+          <li><code>-&gt;</code>: Dirección del tráfico. En este caso, estamos buscando tráfico originado desde EXTERNAL_NET hacia HOME_NET. Otra opcion para este parámetro es “&lt;&gt;”.</li>
+          <li><code>$HOME_NET</code>: IP de destino del tráfico. Esta puede ser definida como una variable en el archivo de configuración de Snort en /etc/snort/snort.conf.</li>
+          <li><code>any</code>: Puerto de destino. Este puede ser un puerto específico (22), o una variable conteniendo una lista de puertos.</li>
+        </ul>
+
+        <p>Nota: recuerda que puedes negar distintos parámetros, incluidos los puertos, anteponiendo el símbolo <code>!</code>. De esta forma con <code>!22</code>, quedará especificado que son todos los puertos excepto el puerto 22.</p>
+
+        <h3>Rule Options</h3>
+
+        <p>Esta segunda parte de la regla se puede diferenciar fácilmente ya que está encerrada dentro de paréntesis y está compuesta por una palabra clave, dos puntos y un argumento. Ejemplo:</p>
+
+        <pre><code>keyword:argument</code></pre>
+
+        <p>Rule Option:</p>
+
+        <pre><code>(msg:"SCAN SYN FIN"; flow:stateless; flags:SF,12; reference:arachnids,198; classtype:attempted-recon; sid:624; rev:7;)</code></pre>
+
+        <ul>
+          <li><code>msg</code>: Este es el mensaje que se envía al sysadmin si la regla se cumple y es activada. El mensaje en este caso es “SCAN SYN FIN”.</li>
+          <li><code>flow</code>: Esta opción permite a la regla verificar el flujo del tráfico. Esta opción puede ser <code>established</code> (Conexión TCP establecida), <code>not established</code> (Conexión TCP no establecida), <code>stateless</code> (Conexión establecidas y no establecidas). A continuación dejamos las distintas opciones que pueden ser usadas, estas fueron sacadas del manual oficial de Snort.</li>
+          <li><code>flags</code>: Esta sección es para las banderas TCP.
+        <pre><code>F - FIN - Finish (LSB in TCP Flags byte)
+        S - SYN - Synchronize sequence numbers
+        R - RST - Reset
+        P - PSH - Push
+        A - ACK - Acknowledgment
+        U - URG - Urgent
+        C - CWR - Congestion Window Reduced (MSB in TCP Flags byte)
+        E - ECE - ECN-Echo (If SYN, then ECN capable. Else, CE flag in IP header is set)
+        0 - No TCP Flags Set</code></pre>
+        En este caso la regla está buscando tráfico que contenga la bandera SYN y FIN (SF) y adicionalmente tiene los dos bits reservados (12) en la bandera.</li>
+          <li><code>reference</code>: Esta sección es utilizada para extender la información y hacer referencia a una base de datos de seguridad, en este caso podemos obtener más información sobre este ataque en la base de datos de arachnids, attack 198.</li>
+          <li><code>classtype</code>: Todas las reglas están clasificadas en numerosas categorías para ayudar a entender al administrador el tipo de ataque que fue realizado. En el caso particular del ejemplo, el ataque fue clasificado como un “attempted-recon”.</li>
+          <li><code>sid</code>: (Signature ID) este es el identificador de la regla dentro de Snort. Cada regla debe tener un ID único. En este caso, el ID de la regla es “624”.</li>
+          <li><code>rev</code>: A medida que se revisan, mejoran o modifican las reglas, se les asigna un número de revisión. En el caso particular del ejemplo, esta es la revisión “7” de esta regla.</li>
+          <li><code>content</code>: En esta opción se especifica el contenido que se intenta encontrar en el paquete y lanzar la acción especificada al inicio de la regla. Estos pueden especificarse de distintas formas.
+        <pre><code>content: "CONTENIDO"
+        content: "| 54 14 4C 4F 53 | Intelligence"
+        content: !"SNORT"</code></pre></li>
+        </ul>
+      </div>
+    </article>
+    <nav class="article__foot" aria-label="More writing" lang="en">
+      <a href="index.html#writing">All writing</a>
+      <a href="okr.html">Next: Objectives and key results</a>
+    </nav>
+  </main>
+
+  <footer class="footer" lang="en">
+    <p>© <span data-year>2026</span> Manuel Montoya</p>
+    <p class="footer__coords">4°42′N 74°09′W</p>
+    <p>Handmade with HTML, CSS and JavaScript.</p>
+  </footer>
+
+  <script src="js/site.js" defer></script>
 </body>
 </html>
