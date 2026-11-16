@@ -1,6 +1,6 @@
 # manuelmontoya.dev
 
-Personal site of **Manuel Montoya**: Senior Software Engineer at Endeavor Global, former Colombian Air Force pilot, founder.
+Personal site of **Manuel Montoya**: Senior Software Engineer at Endeavor (AI systems, cloud infrastructure and cybersecurity), former Colombian Air Force pilot, founder.
 
 ## Design: "chart and logbook"
 
@@ -14,7 +14,7 @@ The site borrows the visual language of aeronautical charts to tell a pilot-to-e
   - Endeavor: a defense-in-depth diagram with a radar-sweep reveal.
   - Experience: a flight log whose route is drawn as you scroll.
   - Skills: a pre-flight checklist that runs item by item.
-  - Projects: a D3 globe of Endeavor's network, plus cyanotype images that develop to colour on hover.
+  - Projects: athmira (camera bike fit with on-device pose detection) and KALMA Play Café (booking platform), a D3 globe of Endeavor's network, and earlier work. Images are cyanotype until hover, then develop to colour.
   - Writing: posts that morph into their article page via cross-document View Transitions.
 - **Accessibility.**
   - Semantic HTML with a skip link, visible focus and 44px touch targets on touch screens.
