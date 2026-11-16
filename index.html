@@ -1,473 +1,580 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manuel Montoya</title>
-    <link rel="icon" href="assets/favicon.png">
-    <link rel="stylesheet" href="styles/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manuel Montoya, Senior Software Engineer at Endeavor Global</title>
+  <meta name="description" content="Manuel Montoya is a Senior Software Engineer at Endeavor Global working across cybersecurity, cloud, Okta, Salesforce and product. Former Colombian Air Force pilot with 1,500 flight hours. Based in Bogotá.">
+  <meta name="theme-color" content="#EEF2F0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0D1724" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://manuelmontoya.dev/">
+  <meta property="og:title" content="Manuel Montoya, Senior Software Engineer at Endeavor Global">
+  <meta property="og:description" content="Pilot, engineer, founder. Security, cloud and product for a global network of entrepreneurs.">
+  <meta property="og:image" content="https://manuelmontoya.dev/img/og-card.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://manuelmontoya.dev/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="assets/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+  <link rel="stylesheet" href="css/site.css">
+  <script>
+    /* Set theme and motion flags before first paint to avoid a flash. */
+    (function () {
+      var d = document.documentElement, saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (e) {}
+      var dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+      d.dataset.theme = dark ? 'dark' : 'light';
+      d.classList.add('js');
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('motion');
+    })();
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Manuel Montoya",
+    "jobTitle": "Senior Software Engineer",
+    "worksFor": { "@type": "Organization", "name": "Endeavor Global" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Bogotá", "addressCountry": "CO" },
+    "url": "https://manuelmontoya.dev/",
+    "sameAs": ["https://www.linkedin.com/in/manuel-montoya-col/", "https://github.com/manuelm1209"]
+  }
+  </script>
 </head>
-<body class="main-content">
-    <header class="container header active" id="home">
-        <div class="header-content">
-            <div class="left-header">
-                <div class="h-shape"></div>
-                <div class="image">
-                    <img src="img/ManuelMontoya.png" alt="Manuel Montoya">
-                </div>
-            </div>
-            <div class="right-header">
-                <h1 class="name">
-                    Hi, I'm <span>Manuel Montoya.</span>
-                </h1>
-                <p>
-                    I hold a degree in computer science.<br>
-                    I'm a Web Developer, cloud computing admin, and cybersecurity passionate.
-                </p>
-                <div class="btn-con">
-                    <a href="assets/CV_Manuel_Montoya.pdf" target="_blank" rel="noopener noreferrer" class="main-btn">
-                        <span class="btn-text">Download CV</span>
-                        <span class="btn-icon"><i class="fas fa-download"></i></span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-    <main>
-        <section class="container about" id="about">
-            <div class="main-title">
-                <h2>About <span>me</span><span class="bg-text">my stats</span></h2>
-            </div>
-            <div class="about-container">
-                <div class="left-about">
-                    <h4>Information About me</h4>
-                    <p>
-                        Graduate of computer engineering with +7 years of hands-on experience working across the entire software development stack, CMS like WordPress, Cloud Computing, and capable of working with various technology and software solutions.Experience implementing digital transformation and adaptable agile methodologies for software development projects, new businesses, and sales channels. <br /> <br /> My assets include a positive attitude, a proactive approach toward personal development, and problem-solving skills.<br><br>
-                    </p>
-                    <div class="btn-con">
-                        <a href="assets/CV_Manuel_Montoya.pdf" target="_blank" rel="noopener noreferrer" class="main-btn">
-                            <span class="btn-text">Download CV</span>
-                            <span class="btn-icon"><i class="fas fa-download"></i></span>
-                        </a>
-                    </div>
-                </div>
-                <div class="right-about">
-                    <div class="about-item">
-                        <div class="abt-text">
-                            <p class="large-text">100+</p>
-                            <p class="small-text">Projects <br /> Completed</p>
-                        </div>
-                    </div>
-                    <div class="about-item">
-                        <div class="abt-text">
-                            <p class="large-text">10+</p>
-                            <p class="small-text">Years of <br /> experience</p>
-                        </div>
-                    </div>
-                    <div class="about-item">
-                        <div class="abt-text">
-                            <p class="large-text">30+</p>
-                            <p class="small-text">Clients</p>
-                        </div>
-                    </div>
-                    <div class="about-item">
-                        <div class="abt-text">
-                            <p class="large-text">20+</p>
-                            <p class="small-text">Certifications</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="about-stats">
-                <h4 class="stat-title">My Skills</h4>
-                <div class="progress-bars">
-                    <div class="progress-bar">
-                        <p class="prog-title">GNU / Linux</p>
-                        <div class="progress-con">
-                            <p class="prog-text">90%</p>
-                            <div class="progress">
-                                <span class="linux"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">Cloud Computing</p>
-                        <div class="progress-con">
-                            <p class="prog-text">80%</p>
-                            <div class="progress">
-                                <span class="cloud"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">BASH</p>
-                        <div class="progress-con">
-                            <p class="prog-text">80%</p>
-                            <div class="progress">
-                                <span class="bash"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">Python</p>
-                        <div class="progress-con">
-                            <p class="prog-text">85%</p>
-                            <div class="progress">
-                                <span class="python"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">Cybersecurity</p>
-                        <div class="progress-con">
-                            <p class="prog-text">90%</p>
-                            <div class="progress">
-                                <span class="cyber"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">WordPress / PHP</p>
-                        <div class="progress-con">
-                            <p class="prog-text">87%</p>
-                            <div class="progress">
-                                <span class="wordpress"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">html5/css3</p>
-                        <div class="progress-con">
-                            <p class="prog-text">80%</p>
-                            <div class="progress">
-                                <span class="html"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">git</p>
-                        <div class="progress-con">
-                            <p class="prog-text">85%</p>
-                            <div class="progress">
-                                <span class="git"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <h4 class="stat-title">My Timeline</h4>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="tl-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <p class="tl-duration">2021 - present</p>
-                    <h5>Web Developer<span> - Endeavor</span></h5>
-                    <p>
-                        Endeavor is on a mission to build thriving entrepreneurial ecosystems in emerging and underserved markets around the world.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <div class="tl-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <p class="tl-duration">2020 - 2021</p>
-                    <h5>Entrepreneur, CEO<span> - monkki</span></h5>
-                    <p>
-                        Online personalized products platform.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <div class="tl-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <p class="tl-duration">2019 - 2020</p>
-                    <h5>Entrepreneur, CTO<span> - The FitMode</span></h5>
-                    <p>
-                        Mobile (IOS/Android) fitness application.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <div class="tl-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <p class="tl-duration">2019 - 2020</p>
-                    <h5>Freelancer<span> - Web Developer</span></h5>
-                    <p>
-                        Projects: delivery, e-commerce, online booking, cloud computing, databases, and secure infrastructure.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <div class="tl-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <p class="tl-duration">2009 - 2019</p>
-                    <h5>Pilot<span> - Air Force</span></h5>
-                    <p>
-                        I+D+i commander at barranquilla.<br>1.500 flight hours.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <div class="tl-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <p class="tl-duration">2018 - 2020</p>
-                    <h5>Entrepreneur, CTO<span> - OUTIMPO S.A.S</span></h5>
-                    <p>
-                        Imported items E-commerce platform developed in WordPress.
-                    </p>
-                </div>
-            </div>
-        </section>
-        <section class="container" id="portfolio">
-            <div class="main-title">
-                <h2>My <span>Portfolio</span><span class="bg-text">My Work</span></h2>
-            </div>
-            <p class="port-text">
-                Here is some of my work that I've done in various programming languages.
-            </p>
-            <div class="portfolios">
-                <div class="portfolio-item">
-                    <div class="image">
-                        <img src="img/monkki.png" alt="">
-                    </div>
-                    <div class="hover-items">
-                        <h3>monkki.com</h3>
-                        <div class="icons">
-                            <a href="https://monkki.com" target="_blank" rel="noopener noreferrer" class="icon">
-                                <i class="fas fa-link"></i>
-                            </a>
-                            <a href="https://www.youtube.com/watch?v=nWF1MVM7LRA" target="_blank" rel="noopener noreferrer" class="icon">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="image">
-                        <img src="img/TheFitMode.jpg" alt="The FitMode">
-                    </div>
-                    <div class="hover-items">
-                        <h3>The FitMode<br>IOS/Android App</h3>
-                        <div class="icons">
-                            <!-- <a href="#" class="icon">
-                                <i class="fab fa-github"></i>
-                            </a> -->
-                            <a href="https://play.google.com/store/apps/details?id=com.fitmodeco.fitmodeco_navbar&hl=en_US&gl=US" target="_blank" rel="noopener noreferrer" class="icon">
-                                <i class="fab fa-android"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="image">
-                        <img src="img/DeChocolatte.png" alt="">
-                    </div>
-                    <div class="hover-items">
-                        <h3>DeChocolatte.com</h3>
-                        <div class="icons">
-                            <a href="https://www.dechocolatte.com/" target="_blank" rel="noopener noreferrer" class="icon">
-                                <i class="fas fa-link"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="image">
-                        <img src="img/campus.png" alt="">
-                    </div>
-                    <div class="hover-items">
-                        <h3>Networking<br>Platform</h3>
-                        <div class="icons">
-                            <a href="https://www.endeavorcampus.com" target="_blank" rel="noopener noreferrer" class="icon">
-                                <i class="fas fa-link"></i>
-                            </a>
-                            <a href="https://www.youtube.com/watch?v=m9DKDaRVX3w" target="_blank" rel="noopener noreferrer" class="icon">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="image">
-                        <img src="img/bash.jpeg" alt="">
-                    </div>
-                    <div class="hover-items">
-                        <h3>BASH Script</h3>
-                        <div class="icons">
-                            <a href="https://github.com/manuelm1209/bash-reports/blob/main/README.md" target="_blank" rel="noopener noreferrer" class="icon">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="portfolio-item">
-                    <div class="image">
-                        <img src="img/port2.jpg" alt="">
-                    </div>
-                    <div class="hover-items">
-                        <h3>Project Source</h3>
-                        <div class="icons">
-                            <a href="#" class="icon">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="#" class="icon">
-                                <i class="fab fa-behance"></i>
-                            </a>
-                            <a href="#" class="icon">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-        </section>
-        <section class="container" id="blogs">
-            <div class="blogs-content">
-                <div class="main-title">
-                    <h2>My <span>Blogs</span><span class="bg-text">My Blogs</span></h2>
-                </div>
-                <div class="blogs">
-                    <div class="blog">
-                        <img src="img/port1.jpg" alt="">
-                        <div class="blog-text">
-                            <h4>
-                                <a href="sql.html">SQL Inyection - step by step (Spanish)</a>
-                            </h4>
-                            <p>
-                                La inyección SQL (iSQL/SQL inyection), es una vulnerabilidad web, la cual se basa en interferir las consultas que una...
-                            </p>
-                        </div>
-                    </div>
-                    <div class="blog">
-                        <img src="img/snort2.jpeg" alt="">
-                        <div class="blog-text">
-                            <h4>
-                                <a href="snort2.html">Snort2 - Instalación y configuración (Spanish)</a>
-                            </h4>
-                            <p>
-                                Snort es el sistema de prevención/detección de intrusos de código abierto más importante del...
-                            </p>
-                        </div>
-                    </div>                  
-                    <div class="blog">
-                        <img src="img/port2.jpg" alt="">
-                        <div class="blog-text">
-                            <h4>
-                                <a href="okr.html">Objectives and Key Results (Spanish)</a>
-                            </h4>
-                            <p>
-                                Los OKR son una metodología de gestión que ayuda a asegurar que todos los miembros de una organización se centra...
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="container contact" id="contact">
-            <div class="contact-container">
-                <div class="main-title">
-                    <h2>Contact <span>Me</span><span class="bg-text">Contact</span></h2>
-                </div>
-                <div class="contact-content-con">
-                    <div class="left-contact">
-                        <h4>Contact me here</h4>
-                        <p>
-                            Let's get in touch.
-                        </p>
-                        <div class="contact-info">
-                            <div class="contact-item">
-                                <div class="icon">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <span><b>Location:</b><br>Bogotá, Colombia</span>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="icon">
-                                    <i class="fas fa-envelope"></i>
-                                    <span><b>Email:</b><br><a href="mailto:manuelm1209@gmail.com" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">manuelm1209@gmail.com</a></span>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="icon">
-                                    <i class="fas fa-user-graduate"></i>
-                                    <span><b>Education:</b><br><a href="https://www.emavi.edu.co/" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">FAC Academy, Colombia</a></span>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="icon">
-                                    <i class="fas fa-globe-americas"></i>
-                                    <span><b>Languages:</b><br>English - Full professional proficiency<br>Spanish - Native</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="contact-icons">
-                            <div class="contact-icon">
-                                <a href="https://www.linkedin.com/in/manuel-montoya-col/" target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a href="https://twitter.com/manuelm1209" target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="https://github.com/manuelm1209" target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a href="mailto:manuelm1209@gmail.com" target="_blank" rel="noopener noreferrer">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="right-contact">
-                        <form action="" class="contact-form">
-                            <div class="input-control i-c-2">
-                                <input type="text" required placeholder="YOUR NAME">
-                                <input type="email" required placeholder="YOUR EMAIL">
-                            </div>
-                            <div class="input-control">
-                                <input type="text" required placeholder="ENTER SUBJECT">
-                            </div>
-                            <div class="input-control">
-                                <textarea name="" id="" cols="15" rows="8" placeholder="Message Here..."></textarea>
-                            </div>
-                            <div class="submit-btn">
-                                <a href="assets/CV_Manuel_Montoya.pdf" target="_blank" rel="noopener noreferrer" class="main-btn">
-                                    <span class="btn-text">Download CV</span>
-                                    <span class="btn-icon"><i class="fas fa-download"></i></span>
-                                </a>
-                            </div>
-                        </form>
-                    </div> -->
-                </div>
-            </div>
-        </section>
-    </main>
+<body>
+  <!-- Icon sprite + duotone filters. Kept in the DOM (not display:none) so the filters resolve. -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <!-- Cyanotype duotone: shadows to chart ink, mids to airspace blue, highlights to paper. -->
+      <filter id="duo-light" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0"/>
+        <feComponentTransfer>
+          <feFuncR type="table" tableValues="0.075 0.114 0.933"/>
+          <feFuncG type="table" tableValues="0.145 0.353 0.949"/>
+          <feFuncB type="table" tableValues="0.231 0.639 0.941"/>
+        </feComponentTransfer>
+      </filter>
+      <filter id="duo-dark" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0"/>
+        <feComponentTransfer>
+          <feFuncR type="table" tableValues="0.051 0.235 0.894"/>
+          <feFuncG type="table" tableValues="0.09 0.4 0.925"/>
+          <feFuncB type="table" tableValues="0.141 0.62 0.953"/>
+        </feComponentTransfer>
+      </filter>
+    </defs>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 20h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></g></symbol>
+    <symbol id="i-out" viewBox="0 0 24 24"><path d="M8 16 16 8m-6.5 0H16v6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M16 8V5.5A1.5 1.5 0 0 0 14.5 4h-9A1.5 1.5 0 0 0 4 5.5v9A1.5 1.5 0 0 0 5.5 16H8"/></g></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2m0 15v2M2.5 12h2m15 0h2M5.3 5.3l1.4 1.4m10.6 10.6 1.4 1.4m0-13.4-1.4 1.4M6.7 17.3l-1.4 1.4"/></g></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23Zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64Z"/></symbol>
+    <!-- Top-down airliner, nose pointing north (up). -->
+    <symbol id="i-plane" viewBox="-12 -12 24 24"><path fill="currentColor" d="M0-11.5c1 0 1.5 1.3 1.5 2.6V-3l9.5 5.4v2.1L1.5 1.9 1.3 7.4l3.2 2.4v1.6L0 10.2l-4.5 1.2V9.8l3.2-2.4-.2-5.5L-11 4.5V2.4L-1.5-3v-5.9c0-1.3.5-2.6 1.5-2.6Z"/></symbol>
+  </svg>
 
-    <div class="controls">
-        <div class="control active-btn" data-id="home" >
-            <i class="fas fa-home"></i>
-        </div>
-        <div class="control" data-id="about">
-            <i class="fas fa-user"></i>
-        </div>
-        <div class="control" data-id="portfolio">
-            <i class="fas fa-briefcase"></i>
-        </div>
-        <div class="control" data-id="blogs">
-            <i class="far fa-newspaper"></i>
-        </div>
-        <div class="control" data-id="contact">
-            <i class="fas fa-envelope-open"></i>
-        </div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav" data-nav>
+    <div class="nav__inner">
+      <a class="nav__brand" href="#top" aria-label="Manuel Montoya, back to top">
+        <svg class="nav__mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.6"/></svg>
+        <span>Manuel Montoya</span>
+      </a>
+      <button class="nav__menu" type="button" aria-expanded="false" aria-controls="nav-links" data-menu>Menu</button>
+      <nav class="nav__links" id="nav-links" aria-label="Sections">
+        <a href="#endeavor">Endeavor</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#writing">Writing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="nav__theme" type="button" data-theme-toggle aria-label="Switch to dark theme">
+        <svg class="icon icon--moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        <svg class="icon icon--sun" aria-hidden="true"><use href="#i-sun"/></svg>
+      </button>
     </div>
-    <div class="theme-btn">
-        <i class="fas fa-adjust"></i>
+    <div class="nav__track" aria-hidden="true">
+      <span class="nav__track-line"></span>
+      <svg class="nav__track-plane"><use href="#i-plane"/></svg>
     </div>
-    <script src="app.js"></script>
+  </header>
+
+  <main id="main">
+    <!-- HERO: the one bold moment. A real Lambert conformal chart with the Bogotá to New York route. -->
+    <section class="hero" id="top" aria-labelledby="hero-name">
+      <div class="hero__text">
+        <h1 class="hero__name" id="hero-name">
+          <span class="hero__line"><span>Manuel</span></span>
+          <span class="hero__line"><span>Montoya</span></span>
+        </h1>
+        <p class="hero__lede">
+          Senior Software Engineer at Endeavor Global, and a Colombian Air Force pilot for ten years before that.
+          I keep the technology behind a global network of entrepreneurs secure, connected and in the cloud.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="assets/CV_Manuel_Montoya.pdf" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Download CV
+          </a>
+          <a class="btn" href="mailto:manuelm1209@gmail.com">
+            <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>Email me
+          </a>
+        </div>
+        <p class="hero__meta">Based in Bogotá, Colombia. I work in Spanish and English.</p>
+      </div>
+
+      <figure class="chart" data-chart>
+        <div class="chart__frame">
+        <svg class="chart__svg" viewBox="0 0 640 940" role="group" aria-labelledby="chart-title" aria-describedby="chart-desc">
+          <title id="chart-title">Route chart from Bogotá to New York</title>
+          <desc id="chart-desc">A Lambert conformal aeronautical chart of the Caribbean and the United States east coast. A magenta route runs north along the 74th meridian from Bogotá (SKBO), over Barranquilla (SKBQ), to New York (KJFK): 2,158 nautical miles.</desc>
+          <g class="chart__base">
+            <path class="chart__grat" d="M-2,48L7,-2M-2,464L0,453L69,-2M21,937L76,463L129,-2M115,942L152,471L189,0M208,942L228,475L248,4M301,942L305,477L308,5M395,942L381,476L368,5M488,942L458,473L427,2M582,941L534,466L487,-2M642,691L610,457L547,-2M642,194L608,-2M-2,934L3,934L21,937L40,939L58,941L72,942M568,942L582,941L600,939L619,937L637,934L642,934M-2,841L14,843L32,845L50,847L68,849L86,851L104,852L122,854L140,855L158,857L176,858L194,859L212,859L230,860L248,861L266,861L284,861L302,862L320,862L338,862L356,861L374,861L392,861L410,860L428,859L446,859L464,858L482,857L500,855L518,854L536,852L554,851L572,849L590,847L608,845L626,843L642,841M-2,752L7,753L24,755L42,757L59,759L76,761L94,762L111,764L129,765L146,767L163,768L181,769L198,770L215,771L233,771L250,772L268,772L285,773L303,773L320,773L337,773L355,773L372,772L390,772L407,771L425,771L442,770L459,769L477,768L494,767L511,765L529,764L546,762L564,761L581,759L598,757L616,755L633,753L642,752M-2,664L2,665L18,667L35,669L52,671L68,673L85,675L102,676L119,678L135,679L152,681L169,682L186,683L202,684L219,684L236,685L253,686L270,686L286,686L303,687L320,687L337,687L354,686L370,686L387,686L404,685L421,684L438,684L454,683L471,682L488,681L505,679L521,678L538,676L555,675L572,673L588,671L605,669L622,667L638,665L642,664M-2,579L13,581L29,583L45,585L61,587L77,589L94,591L110,592L126,594L142,595L158,596L174,597L190,598L207,599L223,600L239,601L255,601L271,602L288,602L304,602L320,602L336,602L352,602L369,602L385,601L401,601L417,600L433,599L450,598L466,597L482,596L498,595L514,594L530,592L546,591L563,589L579,587L595,585L611,583L627,581L642,579M-2,495L9,496L24,499L40,501L55,503L71,504L86,506L102,508L117,509L133,511L148,512L164,513L180,514L195,515L211,516L226,517L242,517L258,518L273,518L289,518L304,519L320,519L336,519L351,518L367,518L382,518L398,517L414,517L429,516L445,515L460,514L476,513L492,512L507,511L523,509L538,508L554,506L569,504L585,503L600,501L616,499L631,496L642,495M-2,411L6,412L21,414L36,416L50,418L65,420L80,422L95,424L110,425L125,427L140,428L155,429L170,430L185,431L200,432L215,433L230,434L245,434L260,435L275,435L290,436L305,436L320,436L335,436L350,436L365,435L380,435L395,434L410,434L425,433L440,432L455,431L470,430L485,429L500,428L515,427L530,425L545,424L560,422L575,420L590,418L604,416L619,414L634,412L642,411M-2,327L4,328L18,330L33,332L47,334L61,336L75,338L90,340L104,341L118,343L133,344L147,345L162,347L176,348L190,349L205,349L219,350L233,351L248,351L262,352L277,352L291,353L306,353L320,353L334,353L349,353L363,352L378,352L392,351L407,351L421,350L435,349L450,349L464,348L478,347L493,345L507,344L522,343L536,341L550,340L565,338L579,336L593,334L607,332L622,330L636,328L642,327M-2,242L4,243L17,245L31,247L44,249L58,251L72,253L86,255L99,256L113,258L127,259L141,261L154,262L168,263L182,264L196,265L209,266L223,267L237,267L251,268L265,268L279,269L292,269L306,269L320,269L334,269L348,269L361,269L375,268L389,268L403,267L417,267L431,266L444,265L458,264L472,263L486,262L499,261L513,259L527,258L541,256L554,255L568,253L582,251L596,249L609,247L623,245L636,243L642,242M-2,155L4,157L17,159L31,161L44,163L57,165L70,167L83,168L96,170L109,172L122,173L135,174L148,176L162,177L175,178L188,179L201,180L214,181L228,181L241,182L254,183L267,183L280,183L294,184L307,184L320,184L333,184L346,184L360,183L373,183L386,183L399,182L412,181L426,181L439,180L452,179L465,178L478,177L492,176L505,174L518,173L531,172L544,170L557,168L570,167L583,165L596,163L609,161L623,159L636,157L642,155M-2,66L7,68L19,70L32,72L44,74L57,76L69,78L82,80L94,82L107,83L119,85L132,86L144,87L157,89L169,90L182,91L194,92L207,93L219,93L232,94L245,95L257,95L270,95L282,96L295,96L307,96L320,96L333,96L345,96L358,96L370,95L383,95L395,95L408,94L421,93L433,93L446,92L458,91L471,90L483,89L496,87L508,86L521,85L533,83L546,82L558,80L571,78L583,76L596,74L608,72L621,70L633,68L642,66"/>
+            <path class="chart__land" d="M210,439L210,439L210,439ZM217,436L217,436L217,436ZM220,435L220,435L220,435ZM467,16L462,16L452,15L445,12L444,9L441,7L434,5L434,4L438,2L448,4L453,6L466,12L468,15ZM481,72L483,72L481,73L482,74L481,76L486,75L488,71L485,71L487,69L487,68L488,66L490,64L491,66L495,67L495,69L496,70L494,72L490,76L486,78L484,78L479,79L477,76L476,72L476,68L478,66L482,56L485,52L487,52L487,54L489,57L487,63L488,65L487,67ZM268,544L274,545L277,547L283,549L285,553L280,554L275,552L273,554L271,553L269,556L267,554L260,553L256,548L252,547L252,545L253,543L257,543L259,542ZM444,541L448,541L452,542L452,544L447,549L440,549L434,549L432,550L428,549L428,546L426,543L428,541L443,541ZM446,65L448,64L452,64L455,66L467,63L468,64L462,69L463,73L458,73L458,71L456,68L453,70L453,70L449,69L446,67L447,67L443,66L442,64L439,63L439,60L443,55L444,57L442,60L445,62L445,65ZM340,167L339,168L342,166L345,166L347,165L342,168L331,172L330,172L321,174L322,173L320,173L322,170L326,168L338,167L343,164ZM201,463L205,464L209,464L211,465L219,465L223,468L227,468L233,471L235,474L239,477L248,478L256,483L261,486L264,488L266,488L266,487L269,490L272,491L268,491L270,494L272,492L279,497L285,498L288,500L293,500L295,502L294,504L295,505L293,505L295,506L301,507L305,507L309,509L312,512L317,514L318,516L316,517L310,518L303,520L302,518L300,520L296,520L292,519L286,519L277,519L273,520L262,520L265,517L270,513L272,511L272,510L270,507L266,506L258,506L256,505L250,500L250,496L248,492L246,490L239,491L229,488L224,485L220,481L220,482L213,482L211,481L210,478L209,480L207,481L206,479L200,479L196,475L201,474L202,473L202,472L199,471L186,470L182,472L176,477L168,478L166,481L163,481L158,483L159,481L157,481L153,482L153,481L158,479L162,478L161,475L161,473L167,469L179,465L188,464L193,463L197,462ZM352,523L355,523L358,520L363,521L368,520L373,522L376,522L378,523L381,524L383,523L385,528L387,529L393,529L395,529L393,531L389,531L389,532L400,534L404,535L409,540L408,543L404,547L400,544L395,543L391,544L387,543L383,545L380,547L376,548L373,546L371,546L367,547L366,550L361,557L358,555L357,552L354,550L351,548L344,548L338,549L330,548L324,549L322,551L317,547L313,546L312,544L314,541L316,541L326,543L339,545L342,543L346,542L346,541L341,537L339,534L340,533L339,531L340,528L335,525L329,524L329,523L331,521L338,520L341,520L348,523ZM465,542L465,542L465,542ZM388,644L385,642L385,641ZM467,667L463,666L465,665ZM339,539L339,540L335,539L331,537L333,536ZM500,106L497,107L496,106ZM105,346L105,346L105,346ZM111,338L111,338L111,338ZM118,338L118,338L118,338ZM494,544L494,544L494,544ZM456,546L456,546L456,546ZM503,559L503,559L503,559ZM472,539L472,539L472,539ZM468,541L468,541L468,541ZM468,540L468,540L468,540ZM466,550L468,552L465,552ZM270,435L267,435L270,434ZM214,438L214,438L214,438ZM285,274L285,274L285,274ZM121,570L121,570L121,570ZM237,715L236,712L237,712ZM325,88L320,88L324,86L327,84ZM324,86L322,86L323,84L325,84ZM483,80L482,79L484,78ZM468,49L469,50L467,50L468,46L471,43L474,42L472,43L469,48ZM436,40L434,43L434,41ZM436,39L436,39L436,39ZM357,62L356,62L358,60ZM418,106L418,106L418,106ZM388,109L388,109L388,109ZM411,100L410,101L410,98L411,98ZM394,107L391,106L392,104ZM354,158L354,158L354,158ZM318,189L318,189L318,189ZM318,175L318,173L319,174ZM451,310L451,310L451,310ZM366,159L362,160L363,158ZM356,158L355,158L356,155ZM372,161L369,161L371,160ZM295,266L295,266L295,266ZM298,254L298,254L298,254ZM302,220L305,213L305,215ZM299,265L299,265L299,265ZM285,275L286,273L289,270ZM16,344L16,344L16,344ZM162,353L162,353L162,353ZM214,334L213,338L213,335ZM101,339L101,339L101,339ZM63,345L60,342L62,342L64,343ZM106,345L106,345L106,345ZM265,447L263,449L264,450L265,448L266,449L267,454L266,456L263,456L262,451L260,448L264,447ZM264,485L263,486L260,483L264,484ZM258,480L256,479L255,477L256,477ZM249,475L253,475L254,477L250,477ZM272,420L269,418L272,416L272,411L268,404L263,403L268,404L272,408L274,410L275,413L273,415ZM319,473L319,474L316,474L315,472ZM314,451L312,453L312,451ZM335,499L333,502L325,503L325,500L329,499L332,499L335,497ZM317,482L316,482L321,478L321,474L323,477L320,479ZM280,427L285,430L288,433L287,441L285,438L287,438L288,434L285,430L281,428L278,428L279,426ZM295,461L293,461L290,458ZM307,471L305,468L301,466L303,465L302,463L300,459L302,460L303,463L304,466L307,469ZM300,449L300,450L297,450L299,448L297,447L295,442L295,441L297,445ZM260,482L258,481L259,480ZM201,408L201,408L201,408ZM264,440L264,444L259,447L257,444L253,441L256,441L255,439L258,434L257,432L260,433L260,435ZM206,439L206,439L206,439ZM229,396L228,394L226,386ZM188,488L183,490L180,490L179,487L180,488L182,488L180,484L182,482L186,483ZM200,407L200,407L200,407ZM238,473L236,472L235,470ZM253,406L255,407L262,406L262,407L257,408L251,410L249,409L246,406L249,408L251,407L252,405ZM224,431L221,434L223,431L226,428ZM99,542L98,542L100,538L101,539ZM100,551L100,551L100,551ZM42,523L40,523L44,522ZM181,693L181,693L181,693ZM204,526L208,527L209,527L204,528ZM119,504L118,503L119,500L122,500ZM501,557L498,556L498,555ZM534,612L533,614L531,613L531,610L533,607ZM534,600L530,601L531,599L529,598L527,596L528,595L532,597ZM538,674L535,675L523,677L529,673L530,668L529,666L526,665L531,663L538,662L537,665L537,668L538,671ZM416,648L415,650L413,646L416,647ZM540,656L541,654L544,653L544,654ZM509,565L509,565L509,565ZM558,622L556,622L555,618L556,618L559,621ZM489,661L490,663L488,665L486,666L484,664L480,664L483,662L486,664L488,661ZM494,541L494,541L494,541ZM523,643L522,644L523,641L525,640L525,643ZM515,550L513,550L513,548ZM525,578L525,578L525,578ZM516,559L514,560L514,557L516,558ZM525,588L524,589L522,584L522,582L524,583L526,586ZM523,572L520,573L520,569L520,568L523,570L526,572ZM519,576L518,577L517,576L516,572L516,571L520,572ZM530,623L529,621L531,620ZM335,478L337,479L333,479ZM407,650L403,649L400,646L401,645L402,647L406,648ZM356,489L353,488L356,488ZM337,494L335,494L335,493ZM353,488L350,487L352,486ZM346,488L348,489L346,489ZM540,696L539,694L541,692L542,693ZM207,914L204,914L205,909L208,908L211,909L208,911ZM234,715L234,715L234,715ZM232,838L232,838L232,838ZM247,815L247,815L247,815ZM543,691L543,691L543,691ZM24,858L20,856L22,854L26,853L27,855L27,857ZM40,863L38,863L37,862L41,859L43,860ZM190,729L187,728L186,727L186,724L188,724L188,727ZM5,850L3,851L1,849L1,847L5,847L6,848ZM21,869L21,869L21,869ZM9,842L10,843L10,847L13,851L13,854L16,857L13,860L9,861L5,861L3,859L4,856L10,854L8,849L6,847L6,843L3,842L5,840L8,840ZM21,850L16,849L16,848L17,846L21,849ZM415,-2L414,-1L409,-1L407,2L404,3L401,11L401,14L400,16L392,18L389,19L390,20L385,22L384,24L381,26L378,31L376,34L373,38L370,38L364,35L356,33L358,35L363,35L370,38L371,40L370,45L365,51L364,52L361,57L356,61L354,64L348,66L346,66L342,68L342,69L336,73L333,75L327,83L324,84L320,87L316,87L320,88L320,90L316,93L311,96L313,95L317,93L319,92L323,89L326,89L327,85L330,78L333,76L336,75L339,72L342,70L342,69L346,67L349,66L354,64L363,59L369,51L371,48L374,45L375,42L377,40L381,36L386,33L390,29L394,27L398,25L403,22L409,19L414,17L422,16L430,17L434,18L438,21L438,23L435,23L438,25L438,28L437,30L434,32L432,34L427,38L424,38L418,36L416,38L412,38L409,39L412,38L415,40L419,41L421,42L422,45L424,45L427,42L430,41L434,43L432,46L432,50L427,55L428,56L430,55L433,56L432,59L434,62L435,62L436,68L437,70L442,70L445,71L446,72L444,74L448,76L451,76L454,78L456,77L461,77L461,79L464,79L470,74L471,77L474,78L476,77L478,79L479,81L477,83L481,83L482,83L476,87L465,93L455,97L451,97L452,99L451,101L449,101L446,98L445,101L444,99L443,100L442,102L443,104L440,107L436,112L434,115L431,116L430,118L429,119L425,119L423,115L421,116L420,114L419,109L420,105L423,101L422,100L425,99L427,97L424,99L425,97L434,90L441,87L441,90L443,90L444,88L449,86L452,86L453,85L450,84L446,85L444,84L441,85L438,85L436,87L434,86L435,84L438,81L441,77L439,78L437,75L437,78L435,81L434,81L429,84L426,87L422,89L418,88L419,89L415,92L414,91L410,93L409,91L406,91L407,96L408,97L406,100L404,100L401,101L400,102L398,102L397,104L395,106L394,104L392,104L391,105L390,104L389,108L386,107L387,105L386,105L386,103L384,105L384,107L383,111L381,113L379,113L376,115L375,113L374,116L373,115L373,117L371,116L369,117L368,119L368,120L365,125L363,129L362,130L361,134L362,137L364,138L361,139L358,143L362,145L365,150L365,152L368,153L372,151L370,147L372,149L373,154L367,155L364,157L363,154L359,157L357,158L356,155L354,152L353,158L352,160L349,160L347,160L343,161L335,162L334,161L325,166L320,171L322,165L321,164L321,168L320,171L317,173L317,176L320,176L321,178L320,182L318,185L318,188L316,192L315,192L314,194L312,196L309,201L307,202L308,198L305,197L302,195L300,192L300,190L301,187L305,186L303,186L301,187L299,190L299,193L301,196L301,199L304,204L305,205L305,207L306,209L302,217L298,224L299,225L295,228L294,232L293,230L295,224L297,221L298,219L295,218L296,216L294,215L295,212L292,213L290,212L289,209L290,208L293,208L290,205L291,203L289,201L291,201L290,197L292,194L295,192L294,191L293,191L292,193L290,195L289,194L288,197L286,196L288,199L286,200L287,202L286,205L286,209L288,211L286,210L284,207L285,210L288,213L289,216L287,215L283,213L282,211L281,213L280,210L277,211L277,208L280,204L276,207L276,211L277,212L279,212L281,214L286,216L289,220L288,223L286,223L281,217L283,221L286,224L289,225L289,229L287,228L288,230L286,230L283,226L285,229L288,232L289,234L287,235L283,231L279,229L276,229L284,232L284,234L287,237L290,236L293,236L294,241L296,248L298,254L295,247L293,241L293,244L295,247L294,249L291,247L291,249L287,250L285,251L283,249L283,252L292,252L291,257L293,257L293,254L295,253L296,254L296,258L291,262L290,263L286,262L285,260L282,261L278,260L279,261L284,263L285,264L284,267L282,269L278,266L280,269L282,270L286,269L287,270L285,272L282,274L277,273L275,275L273,275L273,276L268,280L266,283L265,286L265,282L264,287L259,286L256,287L252,289L248,294L247,298L244,300L241,301L241,303L235,307L232,308L230,309L226,309L229,310L227,312L226,311L224,311L225,313L223,315L222,318L219,319L220,320L218,322L218,325L216,327L216,329L214,330L212,335L214,345L215,353L220,366L225,376L224,377L224,381L225,385L223,381L224,375L222,378L222,376L222,374L220,371L221,377L223,381L228,397L230,399L231,404L230,408L229,415L229,420L228,419L226,423L225,428L223,430L219,431L217,430L213,431L213,429L214,428L216,429L215,428L214,427L210,419L207,418L205,416L204,413L203,409L202,408L204,405L201,407L201,401L202,400L199,400L199,402L197,401L195,398L193,392L192,390L193,390L197,385L194,383L193,387L192,387L190,384L192,378L194,374L194,367L193,365L185,357L180,349L175,346L172,346L170,349L168,349L164,350L157,351L156,348L152,344L153,341L151,342L151,343L145,340L141,338L144,338L144,337L141,337L138,338L130,338L134,337L134,335L133,336L131,335L129,338L126,339L127,337L124,339L119,339L122,338L120,335L120,333L119,331L117,336L109,336L106,334L101,335L100,335L98,337L96,337L91,335L90,334L87,333L84,337L87,339L90,339L94,337L95,338L92,340L93,341L96,342L97,339L98,340L99,344L96,344L93,346L96,350L99,352L102,354L100,357L99,356L97,357L97,356L96,354L94,352L91,351L91,349L87,347L88,349L87,353L85,354L83,351L80,351L77,353L70,349L72,349L70,345L67,344L65,341L63,341L62,339L59,341L59,342L56,343L51,341L44,337L36,337L34,337L34,336L36,334L35,333L33,335L33,337L30,337L20,340L24,339L20,338L21,335L19,336L17,335L17,338L18,341L14,343L14,345L12,346L3,351L-2,352L-2,351L-2,351L0,350L-2,350L-2,-2ZM-2,525L2,526L12,523L19,524L23,524L26,522L30,522L37,522L39,523L38,524L40,526L44,527L48,525L46,520L54,517L58,514L60,508L63,505L63,503L64,494L67,487L70,486L76,484L91,483L97,481L101,481L103,481L116,485L117,483L114,483L118,482L119,483L122,486L123,491L121,495L117,499L115,500L111,505L110,507L111,510L108,512L106,514L107,516L110,515L109,518L106,519L106,520L108,520L105,528L104,530L103,534L101,537L99,532L99,527L97,529L97,530L94,534L97,535L97,539L94,547L95,548L93,550L93,554L93,558L91,563L87,568L84,569L81,572L81,574L85,577L86,576L86,574L91,578L93,579L97,576L101,576L103,578L106,578L112,580L115,579L121,580L124,579L128,578L128,577L131,577L135,579L141,579L144,579L149,581L150,582L155,582L162,589L159,588L157,588L157,589L160,590L162,593L165,592L164,590L169,593L170,596L172,597L169,600L169,599L167,600L169,601L170,608L166,614L165,618L163,625L164,631L163,637L163,640L161,639L162,636L159,638L161,642L160,647L158,646L157,649L159,650L160,653L158,654L156,659L156,662L158,665L159,665L162,673L167,681L168,682L172,688L175,689L179,692L179,696L181,696L181,699L183,701L188,701L187,698L190,700L192,703L195,704L200,704L204,703L209,700L216,698L219,696L221,695L226,692L235,693L237,695L244,696L251,699L255,702L257,705L263,709L265,712L267,713L271,719L270,721L271,722L273,720L273,715L272,712L270,711L274,708L281,704L284,699L288,696L292,696L293,694L292,691L293,687L294,682L291,684L294,681L296,676L299,674L306,668L312,670L311,672L313,674L316,668L317,665L319,664L323,665L331,665L341,657L349,654L351,649L354,648L358,645L361,645L365,646L367,651L364,655L362,657L355,659L354,660L354,662L356,666L359,669L358,669L359,672L360,674L359,679L354,685L352,690L354,694L358,698L357,699L359,702L362,702L366,701L369,697L370,691L369,689L366,684L364,682L362,677L361,673L362,672L362,670L366,669L373,665L378,664L383,662L386,660L388,661L390,659L389,657L383,658L382,654L383,650L386,649L389,652L389,654L391,659L393,660L399,659L406,661L413,665L416,670L415,671L417,675L418,676L423,676L427,675L435,674L437,673L450,672L452,673L452,675L457,678L469,681L474,680L484,673L490,673L492,672L490,671L485,671L483,672L482,670L489,669L496,669L501,668L505,667L509,666L516,666L522,665L520,667L517,668L514,669L509,669L505,670L507,672L509,673L510,676L509,678L513,676L516,682L519,680L519,678L523,680L526,684L526,681L528,681L529,679L534,683L539,684L543,687L542,689L540,690L539,692L538,696L536,701L530,701L536,704L537,703L540,702L544,700L549,700L551,699L554,699L558,700L560,702L563,702L572,706L579,711L582,714L585,718L586,723L585,726L585,732L585,730L587,726L589,725L595,726L602,731L603,733L607,734L609,735L611,740L611,746L613,739L614,738L623,738L632,739L634,736L637,735L641,735L642,735L642,942L183,942L184,938L185,936L192,930L194,927L200,923L209,918L211,916L215,907L213,902L213,897L212,899L212,904L211,906L209,906L210,902L204,909L201,907L197,902L194,901L192,898L196,897L196,892L195,888L196,884L194,878L196,876L201,874L203,870L205,870L203,866L206,862L209,859L211,857L212,852L211,845L214,844L217,842L219,842L222,841L232,839L234,837L233,833L230,831L232,829L235,827L238,829L239,826L238,824L238,819L240,817L244,816L247,816L249,815L251,812L252,812L255,809L255,807L257,806L260,801L261,801L266,791L263,792L263,789L261,791L260,789L260,785L258,785L261,783L263,777L262,775L262,768L261,765L259,763L262,760L264,759L260,752L261,750L262,746L261,743L259,743L255,735L249,728L245,721L245,719L248,717L247,715L250,713L251,715L256,718L252,714L250,711L248,713L246,712L245,714L243,709L242,707L234,702L228,702L224,704L221,708L222,709L216,713L212,713L210,715L210,717L216,724L217,727L215,728L212,728L210,731L203,731L200,723L199,720L198,720L197,724L192,722L188,715L184,713L181,713L180,711L178,712L172,711L169,712L169,715L165,710L165,706L161,703L159,703L162,707L162,709L158,708L155,705L157,701L157,697L153,693L148,689L143,688L141,686L141,683L140,681L131,675L133,679L136,680L137,683L133,686L130,682L125,680L122,676L122,671L125,668L125,666L121,663L124,662L124,660L121,655L113,648L109,640L104,635L99,629L95,626L98,624L99,626L101,626L101,624L100,623L99,619L93,618L94,620L92,621L87,621L79,618L82,620L76,618L70,614L62,612L59,609L51,605L49,604L41,603L37,601L30,597L24,590L16,579L11,573L3,565L1,562L-2,560L-2,525ZM-2,561L-1,562L-2,561L-2,561ZM540,51L540,51L540,51ZM525,-2L525,0L527,-2L534,-2L534,-2L534,-1L535,-2L537,-2L537,-2L537,-1L535,2L538,0L539,1L543,0L544,2L544,-1L545,0L544,7L545,5L548,3L548,4L551,1L553,-2L554,-2L554,-2L554,1L556,-1L560,-1L564,0L565,3L563,6L562,8L559,11L563,10L562,11L563,12L565,12L564,15L561,17L564,16L566,15L567,15L569,14L571,13L573,11L573,13L573,16L570,17L567,20L568,22L565,24L567,24L567,26L565,28L567,31L569,30L572,24L576,20L577,21L574,27L574,30L575,33L578,30L579,27L579,27L581,30L581,33L579,39L579,41L579,44L578,47L575,47L572,48L571,48L571,40L570,40L568,44L565,46L564,45L564,41L566,36L564,29L561,28L559,33L559,35L558,37L559,34L557,37L554,37L552,41L552,44L550,47L547,47L544,48L542,47L543,45L547,42L550,37L554,34L555,32L553,33L551,33L547,33L547,36L545,37L542,36L539,37L542,35L541,31L539,32L538,32L537,34L534,36L528,37L522,37L520,37L516,37L511,37L511,36L508,39L502,40L501,40L499,35L499,33L503,29L507,24L510,22L505,22L500,23L500,22L503,19L503,20L505,21L507,13L508,12L511,12L512,9L510,8L509,6L511,3L514,4L512,0L513,-2L525,-2ZM551,-2L550,-1L549,-2L551,-2ZM538,49L537,50L537,48L536,45L538,45ZM562,35L561,36L563,31ZM130,569L130,569L130,569ZM341,518L341,519L336,518L339,517ZM124,489L124,489L124,489ZM203,440L203,440L203,440Z"/>
+            <path class="chart__borders" d="M557,700L561,703L560,704L559,706L558,708L555,709L552,713L550,713L549,716L547,718L547,719L549,722L549,724L551,725L553,724L554,724L554,727L553,728L550,730L548,731L545,731L544,732L541,733L540,735L541,738L542,742L539,745L538,747L538,747L550,758L552,759L553,762L553,764L551,766L548,768L547,771L545,771L542,771L541,773L539,774L538,776L533,778L528,780L523,779L520,782L518,782L518,784L517,788L516,790L514,790L508,785L506,784L504,785L502,785L495,785L493,783L491,782L485,782L482,780L481,781L483,783L484,785L486,787L491,790L492,792L493,798L494,802L496,805L497,808L496,810L499,811L505,811L508,811L508,815L507,816L505,817L503,818L501,820L499,820L497,821L496,826L493,830L490,830L486,834L484,834L479,837L477,840L475,841L473,845L472,845L472,842L471,841L468,840L467,841L463,844L458,844L456,843L447,837L447,834L445,830L445,828L443,824L443,822L441,818L440,816L437,813L434,811L433,809L430,809L429,809L429,808L437,799L438,798L434,793L432,792L431,790L429,785L429,781L427,779L427,776L428,772L428,768L427,766L428,764L430,763L430,761L430,758L431,756L433,754L433,752L433,750L431,749L428,748L426,748L425,749L421,750L416,751L411,751L407,750L405,751L402,752L400,752L399,752L393,746L387,738L382,738L377,736L375,736L371,738L368,738L364,737L361,737L356,738L354,737L353,736L351,732L347,731L346,729L346,725L347,721L348,719L347,714L343,710L340,702L338,701L337,700L336,699L334,700L331,701L331,700L333,696L336,692L337,690L338,683L339,678L342,672L345,669L346,667L349,666L353,659L354,658L361,656L364,654M45,-2L66,5L67,-2M67,-2L69,-1L70,0L70,3L70,5L71,8L71,9L71,10L74,11L78,13L80,14L81,15L82,16L85,16L86,15L87,15L90,15L93,17L96,19L97,22L98,22L100,22L102,23L103,25L107,28L109,28L111,27L113,26L115,26L116,28L118,28L122,29L124,29L125,31L126,31L128,31L132,32L134,32L143,28L145,28L148,29L168,44L186,57L187,62L189,65L191,64L194,64L195,64L194,66L195,70L196,72L197,73L199,72L200,72L202,74L200,78L210,85L213,87L214,94L216,114L216,119L212,127L211,133L210,135L207,137L206,139L203,140L202,143L202,146L203,148L207,151L210,151L226,143L239,141L253,135L255,134L257,132L256,130L255,129L255,126L254,122L260,120L263,120L281,120L284,120L287,115L289,113L291,110L293,108L296,106L297,105L302,100L305,98L307,97L309,96L311,96L351,96L352,92L354,91L356,91L358,90L359,91L360,90L360,89L361,88L361,86L363,84L365,82L365,81L366,79L366,77L367,73L369,70L369,65L378,51L381,52L381,54L382,55L384,55L386,55L391,53L393,54L396,57L397,77L398,78L397,81L398,82L400,83L402,84L402,85L401,86L402,88L402,89L404,91L405,91L406,91M642,797L640,796L639,797L638,798L637,800L641,804L641,807L640,808L631,807L630,806L627,806L624,802L622,800L620,796L618,794L616,792L615,788L615,788L614,784L609,785L608,784L607,782L604,780L603,778L600,774L599,772L600,768L602,762L600,760L601,758L603,757L610,755L610,754L611,752L610,751L609,750L611,746M203,921L204,922L205,925L205,929L205,930L203,933L200,932L199,934L200,936L202,936L199,940L201,941L203,940L205,938L206,938L212,942L215,941L216,942M233,942L233,940L234,937L235,933L236,933L238,930L238,926L240,923L241,923L242,924L243,924L243,922L247,916L249,915L258,912L271,908L282,900L290,891L291,889L294,878L296,879L297,879L297,874L297,872L294,869L293,866L291,864L291,864L293,864L296,864L297,864L298,862L299,863L303,865L305,865L306,867L309,868L312,872L314,877L316,879L319,880L322,883L326,884L329,890L329,892L329,893L332,894L333,894L335,895L336,900L335,902L336,903L339,904L340,906L344,905L345,904L349,906L354,905L356,904L357,904L360,901L361,901L365,902L368,904L371,903L373,902L377,902L380,904L382,905L383,905L388,907L389,908L392,909L392,911L381,930L384,932L388,931L390,932L391,935L394,937L395,938L395,940L393,940L392,939L390,940L387,937L385,937L380,938L376,941L372,942M263,709L261,712L262,713L263,716L265,720L265,721L263,723L263,725L259,728L258,728L257,725L256,726L256,728L254,730L253,733M169,715L168,712L167,710L167,710L169,708L170,706L169,703L170,702L172,701L170,698L169,698L169,691L172,689L174,691L176,689M159,665L159,667L156,668L154,668L150,667L149,665L147,664L145,663L142,662L138,663L131,660L127,658L127,658L124,660M101,626L106,626L107,625L108,622L109,621L111,621L112,621L111,614L112,613L114,613L118,614L119,614L122,610L124,610L125,611L128,613L128,613L129,612L131,611L135,608L138,606L138,604L139,602L141,602L141,600L142,599L144,598L145,599L147,601L149,602L151,601L153,601L154,600L156,601L157,600L158,600L160,600L163,599L164,599L166,597L168,597L172,597M95,533L92,532L91,533L90,535L86,540L84,541L82,539L81,539L80,542L51,539L50,548L43,547L46,550L47,552L49,554L52,556L53,557L54,560L54,561L57,562L57,563L56,567L56,569L36,566L27,578L26,579L28,582L27,583L26,586L26,588L24,590M94,618L95,617L95,616L96,611L95,610L92,609L89,607L84,609L84,609L83,607L81,606L78,604L76,601L75,600L71,598L72,596L74,595L74,594L74,591L75,588L78,587L83,584L91,578M355,523L355,524L356,528L355,530L357,532L357,533L354,535L356,537L356,539L354,541L352,542L354,545L355,546L355,551M631,807L625,809L621,809L620,808L615,810L614,813L612,814L608,814L605,816L605,818L599,818L598,820L596,821L597,823L594,824L592,825L591,825L588,824L584,823L578,818L575,817L575,816L573,815L573,811L573,808L570,807L568,801L568,796L568,794L569,788L569,785L571,783L573,779L572,777L569,774L570,771L567,770L562,769L562,768L563,765L564,759L562,758L561,757L559,757L557,758L553,758L552,758L550,758M80,542L75,574L81,574M71,598L68,598L67,599L67,601L65,601L64,603L62,603L58,605L57,606L57,608M494,544L492,544M233,834L236,837L239,839L243,842L248,845L251,846L254,846L254,848L258,850L258,853L261,855L264,855L266,856L269,857L271,856L275,857L276,857L277,855L278,853L283,855L286,859L288,860L291,860L294,862L297,864M447,837L444,837L444,837L443,830L443,828L438,822L436,821L434,823L430,827L427,828L425,824L423,824L422,827L424,829L403,829L399,829L398,829L394,830L394,842L399,841L403,841L405,842L407,845L407,847L407,849L405,849L403,849L401,847L395,850L391,850L391,863L392,864L394,866L397,869L399,869L400,872L400,874L401,877L403,879L403,880L404,882L398,922L395,938L395,938"/>
+            <g class="chart__labels" aria-hidden="true"><text x="8" y="752.7">5°N</text><text x="8" y="665.6">10°N</text><text x="8" y="580.3">15°N</text><text x="8" y="496">20°N</text><text x="8" y="412.2">25°N</text><text x="8" y="328.2">30°N</text><text x="8" y="243.4">35°N</text><text x="8" y="156.9">40°N</text><text x="115.4" y="930" text-anchor="middle">85°W</text><text x="208.6" y="930" text-anchor="middle">80°W</text><text x="301.4" y="930" text-anchor="middle">75°W</text><text x="394.3" y="930" text-anchor="middle">70°W</text><text x="487.3" y="930" text-anchor="middle">65°W</text><text x="580.7" y="930" text-anchor="middle">60°W</text></g>
+          </g>
+          <path class="chart__route-halo" d="M317,778L307,671L323,173"/>
+          <path class="chart__route" d="M317,778L307,671L323,173" pathLength="1" data-route/>
+          <g transform="translate(336 392)" aria-hidden="true"><g class="chart__leg">
+            <rect x="0" y="0" width="76" height="40" rx="3"/>
+            <text x="38" y="17">001°</text>
+            <text x="38" y="33">2,158 nm</text>
+          </g></g>
+
+          <a class="wp" href="#xp-global" data-wp="0.995" transform="translate(322.9 172.7)" aria-label="KJFK, New York: Endeavor Global, 2023 to now">
+            <circle class="wp__pulse" r="9"/>
+            <circle class="wp__hit" r="22"/>
+            <circle class="wp__focus" r="15"/>
+            <circle class="wp__ring" r="9"/>
+            <circle class="wp__dot" r="3"/>
+            <g class="wp__block" transform="translate(17 -4)">
+              <text class="wp__code">KJFK</text>
+              <text class="wp__name" y="17">New York</text>
+            </g>
+          </a>
+          <a class="wp" href="#xp-airforce" data-wp="0.17" transform="translate(307 671.4)" aria-label="SKBQ, Barranquilla: Colombian Air Force, 2009 to 2019">
+            <circle class="wp__hit" r="22"/>
+            <circle class="wp__focus" r="15"/>
+            <circle class="wp__ring" r="9"/>
+            <circle class="wp__dot" r="3"/>
+            <g class="wp__block wp__block--left" transform="translate(-17 -4)">
+              <text class="wp__code">SKBQ</text>
+              <text class="wp__name" y="17">Barranquilla</text>
+            </g>
+          </a>
+          <a class="wp" href="#xp-colombia" data-wp="0" transform="translate(317.4 778.2)" aria-label="SKBO, Bogotá: home, and Endeavor Colombia, 2021 to 2023">
+            <circle class="wp__hit" r="22"/>
+            <circle class="wp__focus" r="15"/>
+            <circle class="wp__ring" r="9"/>
+            <circle class="wp__dot" r="3"/>
+            <g class="wp__block" transform="translate(17 -4)">
+              <text class="wp__code">SKBO</text>
+              <text class="wp__name" y="17">Bogotá</text>
+            </g>
+          </a>
+
+          <g class="chart__clocks"><text class="wp__time" x="339.9" y="202.7" data-tz="America/New_York" aria-hidden="true"></text><text class="wp__time" x="334.4" y="808.2" data-tz="America/Bogota" aria-hidden="true"></text></g>
+
+          <use class="chart__plane" href="#i-plane" width="26" height="26" x="-13" y="-13" transform="translate(322.9 172.7)" data-plane/>
+
+          <g class="chart__cursor" aria-hidden="true" data-cursor>
+            <line class="chart__cursor-h" x1="0" x2="640" y1="0" y2="0"/>
+            <line class="chart__cursor-v" y1="0" y2="940" x1="0" x2="0"/>
+          </g>
+          <rect class="chart__neatline" x="0.5" y="0.5" width="639" height="939"/>
+        </svg>
+        <span class="chart__scan" aria-hidden="true"></span>
+        </div>
+        <figcaption class="chart__caption">
+          <span class="chart__readout" aria-hidden="true" data-readout>4°42′N 74°09′W</span>
+          Home and headquarters sit on nearly the same meridian: 2,158 nautical miles apart, and never more than an hour apart on the clock.
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section about" id="about" aria-labelledby="about-title">
+      <div class="about__portrait">
+        <div class="portrait">
+          <svg class="compass" viewBox="-100 -100 200 200" aria-hidden="true" data-compass></svg>
+          <img src="img/ManuelMontoya.png" alt="Manuel Montoya, arms crossed, wearing a red plaid shirt" width="500" height="830" loading="lazy" decoding="async">
+          <img class="portrait__duo" src="img/ManuelMontoya.png" alt="" width="500" height="830" loading="lazy" decoding="async" aria-hidden="true">
+        </div>
+      </div>
+      <div class="about__text">
+        <h2 class="section__title" id="about-title">Pilot, engineer, founder</h2>
+        <p class="about__lead">
+          I studied computer science engineering at the Escuela Militar de Aviación and flew for the Colombian Air Force from 2009 to 2019:
+          1,500 flight hours, and a final post leading research, development and innovation in Barranquilla.
+        </p>
+        <p>
+          Alongside flying I started building for the web. Between 2017 and 2021 I freelanced and led three ventures as CEO or CTO:
+          monkki, The FitMode and OUTIMPO. Shipping them end to end taught me cloud, code, security and the business around them.
+        </p>
+        <p>
+          Since 2021 I've worked at Endeavor, first in Colombia and, since 2023, on the global team in New York.
+          The cockpit habits came along: checklists, redundancy, and a calm voice on the radio when something breaks.
+        </p>
+
+        <div class="logbook" data-reveal>
+          <table>
+            <caption>Logbook totals</caption>
+            <thead>
+              <tr><th scope="col">Flight hours</th><th scope="col">Years in the Air Force</th><th scope="col">Projects shipped</th><th scope="col">Clients</th><th scope="col">Certifications</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Flight hours"><span class="odo" data-odo>1,500</span></td>
+                <td data-label="Years in the Air Force"><span class="odo" data-odo>10</span></td>
+                <td data-label="Projects shipped"><span class="odo" data-odo>100+</span></td>
+                <td data-label="Clients"><span class="odo" data-odo>30+</span></td>
+                <td data-label="Certifications"><span class="odo" data-odo>20+</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENDEAVOR -->
+    <section class="section endeavor" id="endeavor" aria-labelledby="endeavor-title">
+      <div class="section__head">
+        <h2 class="section__title" id="endeavor-title">My work at Endeavor</h2>
+        <p class="section__lede">
+          Endeavor is the global community of high-impact entrepreneurs, building thriving entrepreneurial ecosystems in emerging and underserved markets.
+          My job is the technology underneath it: secure, connected and dependable.
+        </p>
+      </div>
+
+      <div class="endeavor__body">
+        <figure class="layers" data-reveal data-layers>
+          <div class="layers__stage">
+            <svg class="layers__svg" viewBox="0 0 480 480" role="img" aria-labelledby="layers-title">
+              <title id="layers-title">Defense in depth: cloud infrastructure, identity and access, and applications wrapped around the people they protect</title>
+              <defs>
+                <path id="arc-1" d="M 42 240 A 198 198 0 0 1 438 240"/>
+                <path id="arc-2" d="M 94 240 A 146 146 0 0 1 386 240"/>
+                <path id="arc-3" d="M 146 240 A 94 94 0 0 1 334 240"/>
+              </defs>
+              <g class="layers__ring" data-layer="cloud"><circle cx="240" cy="240" r="222"/></g>
+              <g class="layers__ring" data-layer="identity"><circle cx="240" cy="240" r="170"/></g>
+              <g class="layers__ring" data-layer="apps"><circle cx="240" cy="240" r="118"/></g>
+              <g class="layers__ring layers__ring--core" data-layer="people"><circle cx="240" cy="240" r="62"/></g>
+              <g class="layers__arcs" aria-hidden="true">
+                <text><textPath href="#arc-1" startOffset="50%">Cloud infrastructure</textPath></text>
+                <text><textPath href="#arc-2" startOffset="50%">Identity and access</textPath></text>
+                <text><textPath href="#arc-3" startOffset="50%">Applications and data</textPath></text>
+                <text class="layers__core-label" x="240" y="245">People</text>
+              </g>
+              <g class="layers__blips" aria-hidden="true">
+                <g class="blip" data-layer="cloud" transform="translate(159.7 412.2)"><circle r="4"/><text y="18">AWS</text></g>
+                <g class="blip" data-layer="cloud" transform="translate(320.3 412.2)"><circle r="4"/><text y="18">Linux</text></g>
+                <g class="blip" data-layer="identity" transform="translate(149 341)"><circle r="4"/><text y="18">Okta</text></g>
+                <g class="blip" data-layer="identity" transform="translate(331 341)"><circle r="4"/><text y="18">SSO</text></g>
+                <g class="blip" data-layer="identity" transform="translate(240 376)"><circle r="4"/><text y="18">MFA</text></g>
+                <g class="blip" data-layer="apps" transform="translate(212.6 315.2)"><circle r="4"/><text y="18">Salesforce</text></g>
+                <g class="blip" data-layer="apps" transform="translate(282 312.7)"><circle r="4"/><text y="18">Campus</text></g>
+                <g class="blip" data-layer="apps" transform="translate(319.7 272.2)"><circle r="4"/><text y="18">LMS</text></g>
+              </g>
+            </svg>
+            <div class="layers__sweep" aria-hidden="true"></div>
+          </div>
+          <figcaption>Defense in depth: every layer protects the one inside it.</figcaption>
+        </figure>
+
+        <ol class="layer-list" data-layer-list>
+          <li data-layer="cloud">
+            <h3>Cloud infrastructure</h3>
+            <p>AWS and Linux servers: hosting, networking, backups and monitoring for Endeavor's web platforms.</p>
+          </li>
+          <li data-layer="identity">
+            <h3>Identity and access</h3>
+            <p>Okta for single sign-on, multi-factor authentication and access policies, so the right people reach the right tools and nobody else does.</p>
+          </li>
+          <li data-layer="apps">
+            <h3>Applications and data</h3>
+            <p>Salesforce administration, the WordPress sites, the learning management system and Endeavor Campus.</p>
+          </li>
+          <li data-layer="people">
+            <h3>People</h3>
+            <p>Entrepreneurs, mentors and staff. Every layer exists to protect their data and their time.</p>
+          </li>
+        </ol>
+      </div>
+
+      <p class="endeavor__note">
+        On the global team I also work as a product manager: shaping requirements, setting OKRs and getting changes shipped across teams.
+      </p>
+    </section>
+
+    <!-- EXPERIENCE: a flight log. The route is drawn as you scroll, flying south through time. -->
+    <section class="section experience" id="experience" aria-labelledby="experience-title">
+      <div class="section__head">
+        <h2 class="section__title" id="experience-title">Experience</h2>
+        <p class="section__lede">Newest first. The route runs south, from New York back to the Air Force.</p>
+      </div>
+
+      <div class="log" data-log>
+        <div class="log__track" aria-hidden="true">
+          <span class="log__line"></span>
+          <svg class="log__plane"><use href="#i-plane"/></svg>
+        </div>
+        <ol class="log__list">
+          <li class="leg leg--waypoint" id="xp-global">
+            <p class="leg__when"><time datetime="2023">2023</time> to now</p>
+            <p class="leg__where"><abbr title="ICAO code for John F. Kennedy International Airport">KJFK</abbr> New York</p>
+            <h3 class="leg__role">Senior Software Engineer <span>Endeavor Global</span></h3>
+            <p>Cybersecurity, cloud computing and product management for Endeavor's global team. I administer Okta and Salesforce for staff around the world.</p>
+            <ul class="tags"><li>Cybersecurity</li><li>Cloud</li><li>Product management</li><li>Okta</li><li>Salesforce</li></ul>
+          </li>
+          <li class="leg leg--waypoint" id="xp-colombia">
+            <p class="leg__when"><time datetime="2021">2021</time> to <time datetime="2023">2023</time></p>
+            <p class="leg__where"><abbr title="ICAO code for El Dorado International Airport">SKBO</abbr> Bogotá</p>
+            <h3 class="leg__role">Senior Web Developer and Cloud Computing Admin <span>Endeavor Colombia</span></h3>
+            <p>Ran Endeavor Colombia's web platforms on AWS, managed projects, and built Endeavor Campus, a social and learning platform for the entrepreneurial ecosystem.</p>
+            <ul class="tags"><li>WordPress</li><li>AWS</li><li>Learning management</li><li>Project management</li><li>HTML, CSS, JS</li></ul>
+          </li>
+          <li class="leg">
+            <p class="leg__when"><time datetime="2020">2020</time> to <time datetime="2021">2021</time></p>
+            <h3 class="leg__role">CEO <span>monkki</span></h3>
+            <p>An online platform for designing and ordering personalized products.</p>
+            <ul class="tags"><li>Leadership</li><li>WordPress</li><li>Google Cloud</li><li>Cybersecurity</li></ul>
+          </li>
+          <li class="leg">
+            <p class="leg__when"><time datetime="2019">2019</time> to <time datetime="2020">2020</time></p>
+            <h3 class="leg__role">CTO <span>The FitMode</span></h3>
+            <p>iOS and Android fitness app with a cloud recipe database, role-based permissions and passwordless sign-in by device.</p>
+            <ul class="tags"><li>Mobile</li><li>Google Cloud</li><li>WordPress</li></ul>
+          </li>
+          <li class="leg">
+            <p class="leg__when"><time datetime="2018">2018</time> to <time datetime="2021">2021</time></p>
+            <h3 class="leg__role">CTO <span>OUTIMPO</span></h3>
+            <p>E-commerce platform for imported goods, built on WordPress, plus the import and distribution operation behind it.</p>
+            <ul class="tags"><li>E-commerce</li><li>WordPress</li><li>Google Cloud</li></ul>
+          </li>
+          <li class="leg">
+            <p class="leg__when"><time datetime="2017">2017</time> to <time datetime="2020">2020</time></p>
+            <h3 class="leg__role">Web Developer and Cloud Admin <span>Freelance</span></h3>
+            <p>Delivery, e-commerce, online booking, cloud, databases and secure infrastructure for clients.</p>
+            <ul class="tags"><li>WordPress</li><li>Google Cloud</li><li>HTML, CSS, JS</li></ul>
+          </li>
+          <li class="leg leg--waypoint" id="xp-airforce">
+            <p class="leg__when"><time datetime="2009">2009</time> to <time datetime="2019">2019</time></p>
+            <p class="leg__where"><abbr title="ICAO code for Ernesto Cortissoz International Airport">SKBQ</abbr> Barranquilla</p>
+            <h3 class="leg__role">Pilot <span>Colombian Air Force</span></h3>
+            <p>1,500 flight hours. My final post was commander of research, development and innovation (I+D+i) in Barranquilla, running projects, teams and e-learning systems.</p>
+            <ul class="tags"><li>Leadership</li><li>Project management</li><li>Research and development</li><li>Learning management</li></ul>
+          </li>
+        </ol>
+      </div>
+
+      <div class="education">
+        <h3 class="education__title">Education</h3>
+        <ul class="education__list">
+          <li><span class="education__years">2009 to 2012</span> Computer Science Engineering, Escuela Militar de Aviación</li>
+          <li><span class="education__years">2006 to 2008</span> Computer Science Engineering, Universidad Tecnológica de Pereira</li>
+          <li><span class="education__years">2004 to 2005</span> Computer Science Technology, INTESCO</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SKILLS: a pre-flight checklist (challenge ........ response). -->
+    <section class="section skills" id="skills" aria-labelledby="skills-title">
+      <div class="section__head">
+        <h2 class="section__title" id="skills-title">Skills</h2>
+        <p class="section__lede">Read the way a crew runs a checklist: the item, then the answer.</p>
+      </div>
+      <ol class="checklist" data-reveal data-checklist>
+        <li><span class="checklist__item">Identity and access</span><span class="checklist__lead"></span><span class="checklist__resp">Okta, SSO, MFA</span></li>
+        <li><span class="checklist__item">CRM</span><span class="checklist__lead"></span><span class="checklist__resp">Salesforce</span></li>
+        <li><span class="checklist__item">Cloud</span><span class="checklist__lead"></span><span class="checklist__resp">AWS, Google Cloud</span></li>
+        <li><span class="checklist__item">Security</span><span class="checklist__lead"></span><span class="checklist__resp">Intrusion detection with Snort, web app testing, hardening</span></li>
+        <li><span class="checklist__item">Servers</span><span class="checklist__lead"></span><span class="checklist__resp">GNU/Linux, Bash</span></li>
+        <li><span class="checklist__item">Web</span><span class="checklist__lead"></span><span class="checklist__resp">WordPress, PHP, HTML, CSS, JavaScript</span></li>
+        <li><span class="checklist__item">Web apps</span><span class="checklist__lead"></span><span class="checklist__resp">TypeScript, Next.js, Supabase</span></li>
+        <li><span class="checklist__item">APIs</span><span class="checklist__lead"></span><span class="checklist__resp">REST</span></li>
+        <li><span class="checklist__item">Data visualization</span><span class="checklist__lead"></span><span class="checklist__resp">D3.js</span></li>
+        <li><span class="checklist__item">Python and AI</span><span class="checklist__lead"></span><span class="checklist__resp">AI agents, FastAPI, Streamlit</span></li>
+        <li><span class="checklist__item">Mobile</span><span class="checklist__lead"></span><span class="checklist__resp">iOS and Android apps</span></li>
+        <li><span class="checklist__item">Delivery</span><span class="checklist__lead"></span><span class="checklist__resp">Agile, OKRs, project management</span></li>
+        <li><span class="checklist__item">Version control</span><span class="checklist__lead"></span><span class="checklist__resp">Git</span></li>
+      </ol>
+      <p class="checklist__done" aria-hidden="true">Checklist complete.</p>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section projects" id="projects" aria-labelledby="projects-title">
+      <div class="section__head">
+        <h2 class="section__title" id="projects-title">Projects</h2>
+        <p class="section__lede">Platforms for Endeavor, products for my own companies, and the experiments in between.</p>
+      </div>
+
+      <article class="feature" aria-labelledby="feature-title">
+        <div class="feature__globe" data-globe>
+          <canvas class="feature__canvas" aria-hidden="true"></canvas>
+          <p class="feature__hint" aria-hidden="true">Drag to rotate</p>
+          <p class="feature__country" aria-live="polite" data-globe-label></p>
+        </div>
+        <div class="feature__text">
+          <h3 class="feature__title" id="feature-title">Multiplier Effect</h3>
+          <p>
+            A D3.js globe I built to explore Endeavor's network market by market.
+            Here, each highlighted market is linked back to the global office in New York.
+          </p>
+          <p class="feature__links">
+            <a class="btn btn--primary" href="map/">Open the full globe</a>
+          </p>
+          <details class="feature__markets">
+            <summary>List the 38 markets on the globe</summary>
+            <p data-market-list>Argentina, Bangladesh, Brazil, Bulgaria, Canada, Chile, Colombia, Ecuador, Egypt, Greece, Indonesia, Ireland, Italy, Japan, Jordan, Kenya, Lebanon, Malaysia, Mexico, Morocco, Nigeria, Pakistan, Peru, Philippines, Poland, Portugal, Puerto Rico, Romania, Saudi Arabia, South Africa, Spain, Thailand, Tunisia, Turkey, United Arab Emirates, United States, Uruguay, Vietnam.</p>
+          </details>
+        </div>
+      </article>
+
+      <ul class="work">
+        <li class="work__item work__item--tall">
+          <div class="media">
+            <img src="img/campus.png" alt="Endeavor Campus welcome screen: content and tools for entrepreneurs" width="500" height="600" loading="lazy" decoding="async">
+            <img class="media__duo" src="img/campus.png" alt="" width="500" height="600" loading="lazy" decoding="async" aria-hidden="true">
+          </div>
+          <h3>Endeavor Campus</h3>
+          <p>A social platform for Endeavor's entrepreneurial ecosystem: profiles, connections and learning content in one place.</p>
+          <p class="work__links">
+            <a href="https://www.endeavorcampus.com" target="_blank" rel="noopener">Visit site<svg class="icon" aria-hidden="true"><use href="#i-out"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
+            <a href="https://www.youtube.com/watch?v=m9DKDaRVX3w" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>Watch demo<span class="sr-only"> (YouTube, opens in a new tab)</span></a>
+          </p>
+        </li>
+        <li class="work__item">
+          <div class="media">
+            <img src="img/monkki.png" alt="A person designing a custom t-shirt on monkki from a desktop and a phone" width="600" height="450" loading="lazy" decoding="async">
+            <img class="media__duo" src="img/monkki.png" alt="" width="600" height="450" loading="lazy" decoding="async" aria-hidden="true">
+          </div>
+          <h3>monkki</h3>
+          <p>An online platform for designing and ordering personalized products.</p>
+          <p class="work__links">
+            <a href="https://monkki.com" target="_blank" rel="noopener">Visit site<svg class="icon" aria-hidden="true"><use href="#i-out"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
+            <a href="https://www.youtube.com/watch?v=nWF1MVM7LRA" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>Watch demo<span class="sr-only"> (YouTube, opens in a new tab)</span></a>
+          </p>
+        </li>
+        <li class="work__item">
+          <div class="media">
+            <img src="img/TheFitMode.jpg" alt="Three phones showing The FitMode workout screens" width="433" height="432" loading="lazy" decoding="async">
+            <img class="media__duo" src="img/TheFitMode.jpg" alt="" width="433" height="432" loading="lazy" decoding="async" aria-hidden="true">
+          </div>
+          <h3>The FitMode</h3>
+          <p>iOS and Android fitness app with cloud-stored recipes, role-based permissions and passwordless sign-in.</p>
+          <p class="work__links">
+            <a href="https://play.google.com/store/apps/details?id=com.fitmodeco.fitmodeco_navbar&amp;hl=en_US&amp;gl=US" target="_blank" rel="noopener">Google Play<svg class="icon" aria-hidden="true"><use href="#i-out"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
+          </p>
+        </li>
+        <li class="work__item">
+          <div class="media">
+            <img src="img/DeChocolatte.png" alt="DeChocolatte logo" width="600" height="367" loading="lazy" decoding="async">
+            <img class="media__duo" src="img/DeChocolatte.png" alt="" width="600" height="367" loading="lazy" decoding="async" aria-hidden="true">
+          </div>
+          <h3>DeChocolatte</h3>
+          <p>Website and online store presence for the DeChocolatte brand.</p>
+          <p class="work__links">
+            <a href="https://www.dechocolatte.com/" target="_blank" rel="noopener">Visit site<svg class="icon" aria-hidden="true"><use href="#i-out"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
+          </p>
+        </li>
+        <li class="work__item">
+          <div class="media">
+            <img src="img/bash.jpeg" alt="Bash logo" width="600" height="338" loading="lazy" decoding="async">
+            <img class="media__duo" src="img/bash.jpeg" alt="" width="600" height="338" loading="lazy" decoding="async" aria-hidden="true">
+          </div>
+          <h3>bash-reports</h3>
+          <p>A Bash script that collects reports from Linux servers.</p>
+          <p class="work__links">
+            <a href="https://github.com/manuelm1209/bash-reports/blob/main/README.md" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>Read the code<span class="sr-only"> (GitHub, opens in a new tab)</span></a>
+          </p>
+        </li>
+      </ul>
+      <p class="projects__more">
+        More on <a href="https://github.com/manuelm1209" target="_blank" rel="noopener">GitHub<span class="sr-only"> (opens in a new tab)</span></a>: D3 charts, AI agents in Python, and Next.js apps.
+      </p>
+    </section>
+
+    <!-- WRITING -->
+    <section class="section writing" id="writing" aria-labelledby="writing-title">
+      <div class="section__head">
+        <h2 class="section__title" id="writing-title">Writing</h2>
+        <p class="section__lede">Field notes on security and management, written in Spanish.</p>
+      </div>
+      <ul class="posts">
+        <li>
+          <a class="post" href="sql.html" lang="es">
+            <span class="post__thumb" style="view-transition-name: post-sql"><img src="img/port1.jpg" alt="" width="700" height="466" loading="lazy" decoding="async"></span>
+            <span class="post__body">
+              <span class="post__title" lang="en">SQL injection, step by step</span>
+              <span class="post__excerpt">Cómo funciona una consulta SQL, cómo detectar un parámetro vulnerable y cómo llegar a un ataque UNION.</span>
+            </span>
+            <span class="post__meta" lang="en">Security</span>
+          </a>
+        </li>
+        <li>
+          <a class="post" href="snort2.html" lang="es">
+            <span class="post__thumb" style="view-transition-name: post-snort"><img src="img/snort2.jpeg" alt="" width="552" height="368" loading="lazy" decoding="async"></span>
+            <span class="post__body">
+              <span class="post__title" lang="en">Snort 2: installation and configuration</span>
+              <span class="post__excerpt">Instalar el sistema de detección de intrusos más usado, configurarlo y leer la estructura de una regla.</span>
+            </span>
+            <span class="post__meta" lang="en">Security</span>
+          </a>
+        </li>
+        <li>
+          <a class="post" href="okr.html" lang="es">
+            <span class="post__thumb" style="view-transition-name: post-okr"><img src="img/port2.jpg" alt="" width="700" height="466" loading="lazy" decoding="async"></span>
+            <span class="post__body">
+              <span class="post__title" lang="en">Objectives and key results</span>
+              <span class="post__excerpt">Qué son los OKR, por qué deben ser ambiciosos, cómo puntuarlos y cómo escribir unos buenos.</span>
+            </span>
+            <span class="post__meta" lang="en">Management</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <h2 class="section__title contact__title" id="contact-title">Let's talk</h2>
+      <p class="contact__lede">Write to me about security, cloud, product, or building companies in Latin America.</p>
+      <div class="contact__email">
+        <a href="mailto:manuelm1209@gmail.com">manuelm1209@gmail.com</a>
+        <button class="contact__copy" type="button" data-copy="manuelm1209@gmail.com">
+          <svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg><span data-copy-label>Copy address</span>
+        </button>
+        <span class="sr-only" role="status" data-copy-status></span>
+      </div>
+      <ul class="contact__social">
+        <li><a href="https://www.linkedin.com/in/manuel-montoya-col/" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg>LinkedIn</a></li>
+        <li><a href="https://github.com/manuelm1209" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>GitHub</a></li>
+        <li><a href="https://twitter.com/manuelm1209" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>X</a></li>
+        <li><a href="assets/CV_Manuel_Montoya.pdf" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>CV (PDF)</a></li>
+      </ul>
+      <dl class="contact__facts">
+        <div><dt>Based in</dt><dd>Bogotá, Colombia</dd></div>
+        <div><dt>Languages</dt><dd>Spanish (native), English (full professional proficiency)</dd></div>
+        <div><dt>Education</dt><dd>Computer Science Engineering, Escuela Militar de Aviación</dd></div>
+      </dl>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span data-year>2026</span> Manuel Montoya</p>
+    <p class="footer__coords">4°42′N 74°09′W</p>
+    <p>Handmade with HTML, CSS and JavaScript.</p>
+  </footer>
+
+  <script src="js/site.js" defer></script>
 </body>
 </html>
